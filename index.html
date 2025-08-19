@@ -58,7 +58,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, rgba(202, 156, 121, 0.7) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(202, 156, 121, 0.7) 100%), 
+            background: linear-gradient(135deg, rgba(222, 168, 208, 0.7) 0%, rgba(255, 255, 255, 0.774) 50%, rgba(222, 168, 208, 0.7) 100%), 
                         url('path/to/your-header-photo.jpg');
             background-size: cover;
             background-position: center;
@@ -534,62 +534,20 @@
         .photo-placeholder:nth-child(5) { background: var(--pink); }
         .photo-placeholder:nth-child(6) { background: var(--green); }
 
-        .rsvp-form {
-            max-width: 600px;
+        .google-form-container {
+            max-width: 800px;
             margin: 50px auto 0;
             background: var(--white);
-            padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 3px solid var(--pink);
         }
 
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--gray);
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .google-form-container iframe {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #eee;
-            border-radius: 10px;
-            font-family: 'The Seasons', serif;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--pink);
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, var(--pink), var(--gold));
-            color: var(--white);
-            padding: 15px 40px;
+            height: 800px;
             border: none;
-            border-radius: 50px;
-            font-family: 'The Seasons', serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            width: 100%;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .footer {
@@ -619,6 +577,10 @@
             
             .photos-grid {
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .google-form-container iframe {
+                height: 1000px;
             }
         }
     </style>
@@ -679,7 +641,7 @@
                 </iframe>
             </div>
             <div class="video-description">
-                <p>Relive the magical moment when Bes got down on one knee at sunset on our favorite beach. This special day marked the beginning of our journey to forever.</p>
+                <p>Relive the magical moment when Bes got down on one knee at the fortress of Krujë. This special day marked the beginning of our journey to forever.</p>
             </div>
         </div>
     </section>
@@ -712,7 +674,7 @@
                     <p><strong>Parking:</strong> Parking available</p>
                 </div>
                 <section class="map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d838.5052004930511!2d34.9646653!3d32.7917077!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151dbb69004e4f2b%3A0xc3d166826a6099af!2z15LXkNeo15PXnyDXlNeV15jXnCAtINeS158g15DXmdeo15XXoteZ150g15XXntec15XXnyDXkdeV15jXmdenINeR15fXmdek15Q!5e0!3m2!1sen!2sus!4v1755505181146!5m2!1sen!2sus"        
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d838.5052004930511!2d34.9646653!3d32.7917077!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151dbb69004e4f2b%3A0xc3d166826a6099af!2z15LXkNeo15PXnyDXlNeV15jXnCAtINeS158g15AX15nXotec15XXnyDXldeZ150g15XXntec15XXnyDXkdeV15jXmdenINeR15fXmdek15Q!5e0!3m2!1sen!2sus!4v1755505181146!5m2!1sen!2sus"        
                            allowfullscreen="" loading="lazy">
                     </iframe>
                 </section>
@@ -745,40 +707,13 @@
     <section id="rsvp" class="section">
         <div class="container">
             <h2 class="section-title">RSVP</h2>
-            <div class="rsvp-form">
-                <form>
-                    <div class="form-group">
-                        <label for="name">Full Name(s)</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="guests">Number of Guests</label>
-                        <select id="guests" name="guests" required>
-                            <option value="">Select number of guests</option>
-                            <option value="1">1 Guest</option>
-                            <option value="2">2 Guests</option>
-                            <option value="3">3 Guests</option>
-                            <option value="4">4+ Guests</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="attendance">Will you be attending?</label>
-                        <select id="attendance" name="attendance" required>
-                            <option value="">Please select</option>
-                            <option value="yes">Yes, can't wait!</option>
-                            <option value="no">Sorry, can't make it</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="dietary">Dietary Restrictions or Special Requests</label>
-                        <textarea id="dietary" name="dietary" rows="3" placeholder="Please let us know about any allergies or special requirements..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send RSVP</button>
-                </form>
+            <div class="google-form-container">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdJejnoXVJC5nizSS6cyhb7ufHdKVgnRYYUFq2HmeDHXUOPvg/viewform?embedded=true" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0">
+                    Loading…
+                </iframe>
             </div>
         </div>
     </section>
@@ -818,8 +753,6 @@
                 <div class="photo-placeholder">First Date Spot</div>
                 <div class="photo-placeholder">Proposal Moment</div>
                 <div class="photo-placeholder">Family & Friends</div>
-                <div class="photo-placeholder">Adventure Together</div>
-                <div class="photo-placeholder">Our Favorite Places</div>
             </div>
         </div>
     </section>
@@ -843,12 +776,6 @@
                     });
                 }
             });
-        });
-
-        // Form submission handler
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your RSVP! We will send you more details closer to the date.');
         });
 		
         // Wedding countdown timer
@@ -912,6 +839,8 @@
         // Update timer immediately and then every day
         updateTimer();
         setInterval(updateTimer, 24 * 60 * 60 * 1000); // Update daily
+        
+        // Parallax effect for header
         window.addEventListener('scroll', function() {
             const scrolled = window.pageYOffset;
             const header = document.querySelector('.header');
