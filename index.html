@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shachar & Bes</title>
+    <link href="https://fonts.googleapis.com/css2?family=The+Seasons&family=Kedem:wght@400;700&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink: #ca9c79;
+            --green: #bcbc47;
+            --gold: #e8d278;
+            --gray: #656464;
+            --white: #ffffff;
+            --black: #000000;
+        }
+
+        body {
+            font-family: 'The Seasons', serif;
+            line-height: 1.6;
+            color: var(--black);
+            background: linear-gradient(135deg, var(--white) 0%, #f8f8f8 100%);
+        }
+
+        .header {
+            background: linear-gradient(135deg, rgba(202, 156, 121, 0.3) 0%, rgba(202, 156, 121, 0.5) 50%, rgba(202, 156, 121, 0.3) 100%), 
+                        url('./imgs/BDA86FC4-9C19-455C-A26E-C5A58269BA29.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            background: linear-gradient(135deg, rgba(202, 156, 121, 0.7) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(202, 156, 121, 0.7) 100%), 
+                        url('path/to/your-header-photo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        .subtitle::before,
+        .subtitle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 80px;
+            height: 2px;
+            background: var(--white);
+            opacity: 0.7;
+        }
+
+        .subtitle::before {
+            left: -100px;
+        }
+
+        .subtitle::after {
+            right: -100px;
+        }
+
+        .date {
+            font-family: 'Kedem', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(232, 210, 120, 0.6));
+            color: var(--gray);
+            padding: 18px 35px;
+            border-radius: 25px;
+            display: inline-block;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .countdown-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 800px;
+            margin: 50px auto 0;
+        }
+
+        .countdown-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .countdown-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .countdown-card:nth-child(1) { border-color: var(--pink); }
+        .countdown-card:nth-child(2) { border-color: var(--green); }
+        .countdown-card:nth-child(3) { border-color: var(--gold); }
+
+        .countdown-number {
+            font-family: 'Kedem', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--pink);
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav {
+            background: var(--white);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--pink);
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--pink);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green), var(--gold));
+            border-radius: 2px;
+        }
+
+        .timer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .timer-card {
+            background: var(--white);
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .timer-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .timer-card:nth-child(1) { border-color: var(--pink); }
+        .timer-card:nth-child(2) { border-color: var(--green); }
+        .timer-card:nth-child(3) { border-color: var(--gold); }
+        .timer-card:nth-child(4) { border-color: var(--gray); }
+
+        .timer-number {
+            font-family: 'Kedem', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--pink);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .timer-label {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .journey-text {
+            text-align: center;
+            max-width: 600px;
+            margin: 40px auto 0;
+            font-size: 1.2rem;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .detail-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .detail-card:nth-child(1) {
+            border-color: var(--green);
+        }
+
+        .detail-card:nth-child(2) {
+            border-color: var(--green);
+        }
+
+        .detail-card h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .detail-card .time {
+            font-family: 'Kedem', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 15px;
+        }
+
+        .location-section {
+            background: linear-gradient(135deg, #f8f8f8 0%, var(--white) 100%);
+        }
+
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .location-text h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--green);
+            margin-bottom: 20px;
+        }
+
+        .location-text p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        .map {
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        
+        .video-container {
+            max-width: 800px;
+            margin: 50px auto 0;
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            background: transparent;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-description {
+            text-align: center;
+            max-width: 600px;
+            margin: 30px auto 0;
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.6;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        
+        .coming-soon-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .coming-soon {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 3px dashed var(--pink);
+        }
+
+        .coming-soon:nth-child(2) {
+            border-color: var(--green);
+        }
+
+        .coming-soon h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--pink);
+            margin-bottom: 15px;
+        }
+
+        .coming-soon:nth-child(2) h3 {
+            color: var(--green);
+        }
+
+        .coming-soon p {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .coming-soon .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .coming-soon-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+            text-align: center;
+            max-width: 600px;
+            margin: 30px auto 0;
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+
+        .photo-placeholder {
+            aspect-ratio: 1;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-placeholder:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-placeholder:nth-child(1) { background: var(--pink); }
+        .photo-placeholder:nth-child(2) { background: var(--green); }
+        .photo-placeholder:nth-child(3) { background: var(--gold); }
+        .photo-placeholder:nth-child(4) { background: var(--gray); }
+        .photo-placeholder:nth-child(5) { background: var(--pink); }
+        .photo-placeholder:nth-child(6) { background: var(--green); }
+
+        .rsvp-form {
+            max-width: 600px;
+            margin: 50px auto 0;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--gray);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-family: 'The Seasons', serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--pink);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--pink), var(--gold));
+            color: var(--white);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'The Seasons', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            background: var(--gray);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer p {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .nav-container {
+                gap: 20px;
+            }
+            
+            .location-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .photos-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1 class="main-title">Shachar & Bes</h1>
+            <p class="subtitle">The Wedding</p>
+            <div class="date">27.5.2026 </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#countdown" class="nav-link">Countdown</a>
+            <a href="#video" class="nav-link">Proposal Video</a>
+            <a href="#details" class="nav-link">Wedding Details</a>
+            <a href="#location" class="nav-link">Location</a>
+            <a href="#wedding-photos" class="nav-link">Wedding Photos</a>
+            <a href="#magnets" class="nav-link">Magnets</a>
+            <a href="#rsvp" class="nav-link">RSVP</a>
+            <a href="#photos" class="nav-link">Photos</a>
+			<a href="#timer" class="nav-link">Our Journey</a>
+        </div>
+    </nav>
+
+    <section id="countdown" class="section">
+        <div class="container">
+            <h2 class="section-title">Countdown to Our Big Day</h2>
+            <div class="countdown-section">
+                <div class="countdown-card">
+                    <span id="countdown-days" class="countdown-number">0</span>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-card">
+                    <span id="countdown-hours" class="countdown-number">0</span>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-card">
+                    <span id="countdown-minutes" class="countdown-number">0</span>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video" class="section">
+        <div class="container">
+            <h2 class="section-title">The Proposal</h2>
+            <div class="video-container">
+                <!-- Replace the src URL with your actual proposal video -->
+                <iframe src="imgs/IMG_6807.mp4" 
+                        type="video/mp4"
+                        title="Our Proposal Video"
+                        allowfullscreen 
+                        loading="lazy">
+                </iframe>
+            </div>
+            <div class="video-description">
+                <p>Relive the magical moment when Bes got down on one knee at sunset on our favorite beach. This special day marked the beginning of our journey to forever.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="details" class="section">
+        <div class="container">
+            <h2 class="section-title">Wedding Details</h2>
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h3>Reception</h3>
+                    <div class="time">19:30</div>
+                    <p>Celebrate with us with dinner, dancing, and unforgettable memories under the stars.</p>
+                </div>
+                <div class="detail-card">
+                    <h3>Ceremony</h3>
+                    <div class="time">20:30 PM</div>
+                    <p>Join us as we exchange vows in an intimate outdoor ceremony surrounded by nature and our loved ones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="section location-section">
+        <div class="container">
+            <h2 class="section-title">Venue</h2>
+            <div class="location-content">
+                <div class="location-text">
+                    <h3>Garden Hotel</h3>
+                    <p><strong>Address:</strong> Kdoshey Yassi 2, Haifa</p>
+                    <p><strong>Parking:</strong> Parking available</p>
+                </div>
+                <section class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d838.5052004930511!2d34.9646653!3d32.7917077!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151dbb69004e4f2b%3A0xc3d166826a6099af!2z15LXkNeo15PXnyDXlNeV15jXnCAtINeS158g15DXmdeo15XXoteZ150g15XXntec15XXnyDXkdeV15jXmdenINeR15fXmdek15Q!5e0!3m2!1sen!2sus!4v1755505181146!5m2!1sen!2sus"        
+                           allowfullscreen="" loading="lazy">
+                    </iframe>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <section id="wedding-photos" class="section">
+        <div class="container">
+            <h2 class="section-title">Wedding Photos</h2>
+            <div class="coming-soon">
+                <div class="icon">📸</div>
+                <h3>Coming Soon!</h3>
+                <p>Our beautiful wedding photos will be available here soon. We can't wait to share all the magical moments from our special day with you!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="magnets" class="section location-section">
+        <div class="container">
+            <h2 class="section-title">Wedding Magnets</h2>
+            <div class="coming-soon">
+                <div class="icon">🧲</div>
+                <h3>Coming Soon!</h3>
+                <p>Special wedding magnets featuring our favorite photos will be available for download here. A perfect keepsake to remember our wedding day!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="rsvp" class="section">
+        <div class="container">
+            <h2 class="section-title">RSVP</h2>
+            <div class="rsvp-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Full Name(s)</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Number of Guests</label>
+                        <select id="guests" name="guests" required>
+                            <option value="">Select number of guests</option>
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4+ Guests</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="attendance">Will you be attending?</label>
+                        <select id="attendance" name="attendance" required>
+                            <option value="">Please select</option>
+                            <option value="yes">Yes, can't wait!</option>
+                            <option value="no">Sorry, can't make it</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dietary">Dietary Restrictions or Special Requests</label>
+                        <textarea id="dietary" name="dietary" rows="3" placeholder="Please let us know about any allergies or special requirements..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send RSVP</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="timer" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Journey Together</h2>
+            <div class="timer-container">
+                <div class="timer-card">
+                    <span id="years" class="timer-number">0</span>
+                    <div class="timer-label">Years</div>
+                </div>
+                <div class="timer-card">
+                    <span id="months" class="timer-number">0</span>
+                    <div class="timer-label">Months</div>
+                </div>
+                <div class="timer-card">
+                    <span id="days" class="timer-number">0</span>
+                    <div class="timer-label">Days</div>
+                </div>
+                <div class="timer-card">
+                    <span id="totalDays" class="timer-number">0</span>
+                    <div class="timer-label">Total Days</div>
+                </div>
+            </div>
+            <div class="journey-text">
+                <p>Since that special day on October 10th, 2019, when our paths first crossed, we've been writing our love story together. Every day has brought us closer to this moment - our wedding day!</p>
+            </div>
+        </div>
+    </section>
+	
+    <section id="photos" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Memories</h2>
+            <div class="photos-grid">
+                <div class="photo-placeholder">Engagement Photos</div>
+                <div class="photo-placeholder">First Date Spot</div>
+                <div class="photo-placeholder">Proposal Moment</div>
+                <div class="photo-placeholder">Family & Friends</div>
+                <div class="photo-placeholder">Adventure Together</div>
+                <div class="photo-placeholder">Our Favorite Places</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>With love, Shachar & Bes</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your RSVP! We will send you more details closer to the date.');
+        });
+		
+        // Wedding countdown timer
+        function updateCountdown() {
+            const weddingDate = new Date('2026-05-27T19:30:00');
+            const currentDate = new Date();
+            const timeDiff = weddingDate - currentDate;
+            
+            if (timeDiff > 0) {
+                const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                
+                document.getElementById('countdown-days').textContent = days;
+                document.getElementById('countdown-hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('countdown-minutes').textContent = minutes.toString().padStart(2, '0');
+            } else {
+                // Wedding day has arrived!
+                document.getElementById('countdown-days').textContent = '0';
+                document.getElementById('countdown-hours').textContent = '00';
+                document.getElementById('countdown-minutes').textContent = '00';
+            }
+        }
+
+        // Update countdown immediately and then every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        // Calculate and update timer
+        function updateTimer() {
+            const startDate = new Date('2019-10-10');
+            const currentDate = new Date();
+            
+            // Calculate total time difference
+            const timeDiff = currentDate - startDate;
+            const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            
+            // Calculate years, months, and remaining days
+            let years = currentDate.getFullYear() - startDate.getFullYear();
+            let months = currentDate.getMonth() - startDate.getMonth();
+            let days = currentDate.getDate() - startDate.getDate();
+            
+            // Adjust for negative values
+            if (days < 0) {
+                months--;
+                const lastMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            // Update the display
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+            document.getElementById('totalDays').textContent = totalDays.toLocaleString();
+        }
+
+        // Update timer immediately and then every day
+        updateTimer();
+        setInterval(updateTimer, 24 * 60 * 60 * 1000); // Update daily
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('.header');
+            header.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+</html>
