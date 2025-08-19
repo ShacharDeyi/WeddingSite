@@ -1,0 +1,12 @@
+white ffffff
+pink ca9c79
+green bcbc47
+gold e8d278
+gray 656464
+
+hebrew font kedem ultra light
+english font the seasons
+numbers font kedem
+english header font eyesome script
+
+https://shachardeyi.github.io/WeddingSite/
