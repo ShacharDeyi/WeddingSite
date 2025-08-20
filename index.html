@@ -154,13 +154,21 @@
 
         .countdown-card {
             background: var(--white);
-            padding: 40px 30px;
+            padding: 30px 20px;
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
             border: 3px solid transparent;
             background-clip: padding-box;
+        }
+
+        .countdown-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 30px;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .countdown-card:hover {
@@ -174,11 +182,11 @@
 
         .countdown-number {
             font-family: 'Kedem', serif;
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--pink);
             display: block;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .countdown-label {
@@ -596,13 +604,12 @@
 
     <nav class="nav">
         <div class="nav-container">
+            <button id="lang-toggle" style="background: var(--pink); color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 600;">English</button>
             <a href="#countdown" class="nav-link">Countdown</a>
             <a href="#video" class="nav-link">Proposal Video</a>
-            <a href="#details" class="nav-link">Wedding Details</a>
-            <a href="#location" class="nav-link">Location</a>
-            <a href="#wedding-photos" class="nav-link">Wedding Photos</a>
-            <a href="#magnets" class="nav-link">Magnets</a>
+            <a href="#location" class="nav-link">Wedding Details</a>
             <a href="#rsvp" class="nav-link">RSVP</a>
+            <a href="#wedding-photos" class="nav-link">Wedding Photos</a>
             <a href="#photos" class="nav-link">Photos</a>
 			<a href="#timer" class="nav-link">Our Journey</a>
         </div>
@@ -611,7 +618,7 @@
     <section id="countdown" class="section">
         <div class="container">
             <h2 class="section-title">Countdown to Our Big Day</h2>
-            <div class="countdown-section">
+            <div class="countdown-container">
                 <div class="countdown-card">
                     <span id="countdown-days" class="countdown-number">0</span>
                     <div class="countdown-label">Days</div>
@@ -646,24 +653,6 @@
         </div>
     </section>
 
-    <section id="details" class="section">
-        <div class="container">
-            <h2 class="section-title">Wedding Details</h2>
-            <div class="details-grid">
-                <div class="detail-card">
-                    <h3>Reception</h3>
-                    <div class="time">19:30</div>
-                    <p>Celebrate with us with dinner, dancing, and unforgettable memories under the stars.</p>
-                </div>
-                <div class="detail-card">
-                    <h3>Ceremony</h3>
-                    <div class="time">20:30 PM</div>
-                    <p>Join us as we exchange vows in an intimate outdoor ceremony surrounded by nature and our loved ones.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="location" class="section location-section">
         <div class="container">
             <h2 class="section-title">Venue</h2>
@@ -678,6 +667,38 @@
                            allowfullscreen="" loading="lazy">
                     </iframe>
                 </section>
+            </div>
+        </div>
+
+    </section>
+    <section id="details" class="section">
+        <div class="container">
+            <h2 class="section-title">Wedding Details</h2>
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h3>Reception</h3>
+                    <div class="time">19:30</div>
+                    <p>Celebrate with us with dinner, dancing, and unforgettable memories under the stars.</p>
+                </div>
+                <div class="detail-card">
+                    <h3>Ceremony</h3>
+                    <div class="time">20:30</div>
+                    <p>Join us as we exchange vows in an intimate outdoor ceremony surrounded by nature and our loved ones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rsvp" class="section">
+        <div class="container">
+            <h2 class="section-title">RSVP</h2>
+            <div class="google-form-container">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdJejnoXVJC5nizSS6cyhb7ufHdKVgnRYYUFq2HmeDHXUOPvg/viewform?embedded=true" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0">
+                    Loading…
+                </iframe>
             </div>
         </div>
     </section>
@@ -700,20 +721,6 @@
                 <div class="icon">🧲</div>
                 <h3>Coming Soon!</h3>
                 <p>Special wedding magnets featuring our favorite photos will be available for download here. A perfect keepsake to remember our wedding day!</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="rsvp" class="section">
-        <div class="container">
-            <h2 class="section-title">RSVP</h2>
-            <div class="google-form-container">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdJejnoXVJC5nizSS6cyhb7ufHdKVgnRYYUFq2HmeDHXUOPvg/viewform?embedded=true" 
-                        frameborder="0" 
-                        marginheight="0" 
-                        marginwidth="0">
-                    Loading…
-                </iframe>
             </div>
         </div>
     </section>
@@ -846,6 +853,119 @@
             const header = document.querySelector('.header');
             header.style.transform = `translateY(${scrolled * 0.5}px)`;
         });
+    
+        // Language toggle functionality
+        const translations = {
+            he: {
+                nav: ["הספירה לאחור", "ההצעה", "פרטי החתונה", "אישור הגעה", "תמונות מהחתונה", "הרגעים שלנו", "המסע שלנו"],
+                headerTitle: "Shachar & Bes",
+                subtitle: "The Wedding",
+                date: "27.5.2026",
+                countdownTitle: "הספירה לאחור",
+                countdownLabels: ["ימים", "שעות", "דקות"],
+                proposalTitle: "ההצעה",
+                proposalDesc: "חיו מחדש את הרגע הקסום שבו בס ירד על ברך אחת במבצר קרויה. יום מיוחד זה סימן את תחילת המסע שלנו לנצח",
+                detailsTitle: "?מתי",
+                reception: "קבלת פנים",
+                ceremony: "חופה וקידושין",
+                receptionText: "בואו לחגוג איתנו עם ארוחת ערב, ריקודים וזיכרונות בלתי נשכחים תחת הכוכבים",
+                ceremonyText: "הצטרפו אלינו כשנחליף נדרים בטקס אינטימי, מוקפים באהובינו",
+                venueTitle: "?איפה",
+                venueName: "גארדן הוטל",
+                venueAddress: "קדושי יאסי 2, חיפה",
+                venueParking: "חניה זמינה",
+                weddingPhotosTitle: "תמונות מהחתונה",
+                comingSoon: "!בקרוב",
+                comingSoonText: "תמונות החתונה היפות שלנו יהיו זמינות כאן לאחר החתונה",
+                magnetsTitle: "מגנטים מהחתונה",
+                magnetsText: "מזכרות מושלמות מיום החתונה יהיו זמינות כאן",
+                rsvpTitle: "אישור הגעה",
+                journeyTitle: "המסע שלנו",
+                journeyText: "מאז אותו יום בו נפגשנו לראשונה - 10 באוקטובר, 2019",
+                memoriesTitle: "הזיכרונות שלנו",
+                memories: ["תמונות אירוסין", "המקום של הדייט הראשון", "רגע ההצעה", "משפחה וחברים"],
+                footer: "מחכים לראותכם, שחר ובס",
+                labels: ["שנים", "חודשים", "ימים", "סה״כ ימים"]
+            },
+            en: {
+                nav: ["Countdown", "Proposal Video", "Wedding Details", "RSVP", "Wedding Photos", "Our Moments", "Our Journey"],
+                headerTitle: "Shachar & Bes",
+                subtitle: "The Wedding",
+                date: "27.5.2026",
+                countdownTitle: "Countdown to Our Big Day",
+                countdownLabels: ["Days", "Hours", "Minutes"],
+                proposalTitle: "The Proposal",
+                proposalDesc: "Relive the magical moment when Bes got down on one knee at the fortress of Krujë. This special day marked the beginning of our journey to forever.",
+                detailsTitle: "Wedding Details",
+                reception: "Reception",
+                ceremony: "Ceremony",
+                receptionText: "Celebrate with us with dinner, dancing, and unforgettable memories under the stars.",
+                ceremonyText: "Join us as we exchange vows in an intimate outdoor ceremony surrounded by nature and our loved ones.",
+                venueTitle: "Venue",
+                venueName: "Garden Hotel",
+                venueAddress: "Kdoshey Yassi 2, Haifa",
+                venueParking: "Parking available",
+                weddingPhotosTitle: "Wedding Photos",
+                comingSoon: "Coming Soon!",
+                comingSoonText: "Our beautiful wedding photos will be available here soon. We can't wait to share all the magical moments from our special day with you!",
+                magnetsTitle: "Wedding Magnets",
+                magnetsText: "Special wedding magnets featuring our favorite photos will be available for download here. A perfect keepsake to remember our wedding day!",
+                rsvpTitle: "RSVP",
+                journeyTitle: "Our Journey Together",
+                journeyText: "Since that special day on October 10th, 2019, when our paths first crossed, we've been writing our love story together. Every day has brought us closer to this moment - our wedding day!",
+                memoriesTitle: "Our Memories",
+                memories: ["Engagement Photos", "First Date Spot", "Proposal Moment", "Family & Friends"],
+                footer: "With love, Shachar & Bes",
+                labels: ["Years", "Months", "Days", "Total Days"]
+            }
+        };
+
+        let currentLang = "he";
+
+        function applyTranslations(lang) {
+            const t = translations[lang];
+            document.querySelectorAll('.nav-link').forEach((el, i) => el.textContent = t.nav[i]);
+            document.querySelector('.main-title').textContent = t.headerTitle;
+            document.querySelector('.subtitle').textContent = t.subtitle;
+            document.querySelector('.date').textContent = t.date;
+            document.querySelector('#countdown .section-title').textContent = t.countdownTitle;
+            document.querySelectorAll('#countdown .countdown-label').forEach((el, i) => el.textContent = t.countdownLabels[i]);
+            document.querySelector('#video .section-title').textContent = t.proposalTitle;
+            document.querySelector('#video .video-description p').textContent = t.proposalDesc;
+            document.querySelector('#details .section-title').textContent = t.detailsTitle;
+            document.querySelectorAll('#details .detail-card h3')[0].textContent = t.reception;
+            document.querySelectorAll('#details .detail-card p')[0].textContent = t.receptionText;
+            document.querySelectorAll('#details .detail-card h3')[1].textContent = t.ceremony;
+            document.querySelectorAll('#details .detail-card p')[1].textContent = t.ceremonyText;
+            document.querySelector('#location .section-title').textContent = t.venueTitle;
+            document.querySelector('#location .location-text h3').textContent = t.venueName;
+            document.querySelector('#location .location-text p strong').textContent = "כתובת:";
+            document.querySelectorAll('#location .location-text p')[0].innerHTML = "<strong>" + (lang === "he" ? "כתובת:" : "Address:") + "</strong> " + t.venueAddress;
+            document.querySelectorAll('#location .location-text p')[1].innerHTML = "<strong>" + (lang === "he" ? "חניה:" : "Parking:") + "</strong> " + t.venueParking;
+            document.querySelector('#wedding-photos .section-title').textContent = t.weddingPhotosTitle;
+            document.querySelector('#wedding-photos h3').textContent = t.comingSoon;
+            document.querySelector('#wedding-photos p').textContent = t.comingSoonText;
+            document.querySelector('#magnets .section-title').textContent = t.magnetsTitle;
+            document.querySelector('#magnets h3').textContent = t.comingSoon;
+            document.querySelector('#magnets p').textContent = t.magnetsText;
+            document.querySelector('#rsvp .section-title').textContent = t.rsvpTitle;
+            document.querySelector('#timer .section-title').textContent = t.journeyTitle;
+            document.querySelector('#timer .journey-text p').textContent = t.journeyText;
+            document.querySelector('#photos .section-title').textContent = t.memoriesTitle;
+            document.querySelectorAll('#photos .photo-placeholder').forEach((el, i) => el.textContent = t.memories[i]);
+            document.querySelector('.footer p').textContent = t.footer;
+            document.querySelectorAll('#timer .timer-label').forEach((el, i) => el.textContent = t.labels[i]);
+        }
+
+        document.getElementById('lang-toggle').addEventListener('click', () => {
+            currentLang = currentLang === "he" ? "en" : "he";
+            applyTranslations(currentLang);
+            document.getElementById('lang-toggle').textContent = currentLang === "he" ? "English" : "עברית";
+        });
+
+        // Apply default language (Hebrew)
+        applyTranslations("he");
+
     </script>
 </body>
 </html>
