@@ -17,7 +17,7 @@
             --green: #bcbc47;
             --gold: #e8d278;
             --gray: #656464;
-            --white: #ffffff;
+            --white: #f8f8f8;
             --black: #000000;
         }
 
@@ -27,68 +27,22 @@
             color: var(--black);
             background: linear-gradient(135deg, var(--white) 0%, #f8f8f8 100%);
         }
-
+        
         .header {
-            background: linear-gradient(135deg, rgba(202, 156, 121, 0.3) 0%, rgba(202, 156, 121, 0.5) 50%, rgba(202, 156, 121, 0.3) 100%), 
-                        url('./imgs/BDA86FC4-9C19-455C-A26E-C5A58269BA29.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: var(--white);
+            background: none;
+            background-color: #f8f8f8;
+            width: 100%;
+            display: block;
             text-align: center;
-            padding: 60px 20px;
             position: relative;
-            overflow: hidden;
         }
 
         .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
-            z-index: 1;
+            content: none;
         }
 
         .header-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .header {
-            background: linear-gradient(135deg, rgba(222, 168, 208, 0.7) 0%, rgba(255, 255, 255, 0.774) 50%, rgba(222, 168, 208, 0.7) 100%), 
-                        url('path/to/your-header-photo.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: var(--white);
-            text-align: center;
-            padding: 80px 20px;
-            position: relative;
-            overflow: hidden;
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
-            z-index: 1;
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
+            display: none;
         }
 
         .main-title {
@@ -150,16 +104,32 @@
             gap: 30px;
             max-width: 800px;
             margin: 50px auto 0;
+
+
+        /* New: background and overlap for countdown */
+        #countdown {
+            background: none;
+            box-shadow: none;
+            border-radius: 10px;
+            position: absolute;
+            left: 50%;
+            bottom: -30px;
+            transform: translateX(-50%);
+            z-index: 20;
+            padding: 18px 0 18px 0;
+            width: 60vw;
+            max-width: 200px;
+        }
         }
 
         .countdown-card {
             background: var(--white);
-            padding: 30px 20px;
-            border-radius: 20px;
+            padding: 12px 8px;
+            border-radius: 12px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease;
-            border: 3px solid transparent;
+            border: 2px solid transparent;
             background-clip: padding-box;
         }
 
@@ -182,15 +152,15 @@
 
         .countdown-number {
             font-family: 'Kedem', serif;
-            font-size: 2.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--pink);
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 4px;
         }
 
         .countdown-label {
-            font-size: 1rem;
+            font-size: 0.8rem;
             color: var(--gray);
             font-weight: 600;
             text-transform: uppercase;
@@ -500,22 +470,19 @@
         }
 
         @media (max-width: 768px) {
+            #countdown {
+                position: static !important;
+                margin: 30px auto 0 auto !important;
+                transform: none !important;
+                width: 100vw !important;
+                max-width: 100% !important;
+                border-radius: 0 0 30px 30px !important;
+                box-shadow: none !important;
+            }
             .coming-soon-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-        }
-            text-align: center;
-            max-width: 600px;
-            margin: 30px auto 0;
-            font-size: 1.1rem;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 50px;
         }
 
 
@@ -595,44 +562,38 @@
 </head>
 <body>
     <header class="header">
-        <div class="header-content">
-            <h1 class="main-title">Shachar & Bes</h1>
-            <p class="subtitle">The Wedding</p>
-            <div class="date">27.5.2026 </div>
-        </div>
+    <img src="./imgs/cover.jpg" alt="Cover" style="display:block;margin:0 auto;max-width:100%;height:auto;" />
     </header>
 
+    <section id="countdown" class="section" style="margin-top:-60px;position:relative;z-index:20;border-radius:30px;width:90vw;max-width:900px;left:50%;transform:translateX(-50%);padding:40px 0;">
+        <div class="countdown-container">
+            <div class="countdown-card">
+                <span id="countdown-days" class="countdown-number">0</span>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-card">
+                <span id="countdown-hours" class="countdown-number">0</span>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-card">
+                <span id="countdown-minutes" class="countdown-number">0</span>
+                <div class="countdown-label">Minutes</div>
+            </div>
+        </div>
+    </section>
     <nav class="nav">
         <div class="nav-container">
             <button id="lang-toggle" style="background: var(--pink); color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 600;">English</button>
-            <a href="#countdown" class="nav-link">Countdown</a>
             <a href="#video" class="nav-link">Proposal Video</a>
             <a href="#location" class="nav-link">Wedding Details</a>
             <a href="#rsvp" class="nav-link">RSVP</a>
             <a href="#wedding-photos" class="nav-link">Wedding Photos</a>
-            <a href="#photos" class="nav-link">Photos</a>
 			<a href="#timer" class="nav-link">Our Journey</a>
         </div>
     </nav>
 
     <section id="countdown" class="section">
-        <div class="container">
-            <h2 class="section-title">Countdown to Our Big Day</h2>
-            <div class="countdown-container">
-                <div class="countdown-card">
-                    <span id="countdown-days" class="countdown-number">0</span>
-                    <div class="countdown-label">Days</div>
-                </div>
-                <div class="countdown-card">
-                    <span id="countdown-hours" class="countdown-number">0</span>
-                    <div class="countdown-label">Hours</div>
-                </div>
-                <div class="countdown-card">
-                    <span id="countdown-minutes" class="countdown-number">0</span>
-                    <div class="countdown-label">Minutes</div>
-                </div>
-            </div>
-        </div>
+    <!-- removed duplicate -->
     </section>
 
     <section id="video" class="section">
@@ -646,9 +607,6 @@
                         allowfullscreen 
                         loading="lazy">
                 </iframe>
-            </div>
-            <div class="video-description">
-                <p>Relive the magical moment when Bes got down on one knee at the fortress of Krujë. This special day marked the beginning of our journey to forever.</p>
             </div>
         </div>
     </section>
@@ -753,14 +711,9 @@
     </section>
 	
     <section id="photos" class="section">
-        <div class="container">
-            <h2 class="section-title">Our Memories</h2>
-            <div class="photos-grid">
-                <div class="photo-placeholder">Engagement Photos</div>
-                <div class="photo-placeholder">First Date Spot</div>
-                <div class="photo-placeholder">Proposal Moment</div>
-                <div class="photo-placeholder">Family & Friends</div>
-            </div>
+        <div class="container" style="text-align:center;">
+            
+            <img src="./imgs/std.jpg" alt="Our Memory" style="max-width:600px;width:100%;height:auto;display:inline-block;" />
         </div>
     </section>
 
@@ -857,14 +810,12 @@
         // Language toggle functionality
         const translations = {
             he: {
-                nav: ["הספירה לאחור", "ההצעה", "פרטי החתונה", "אישור הגעה", "תמונות מהחתונה", "הרגעים שלנו", "המסע שלנו"],
+                nav: ["ההצעה", "פרטי החתונה", "אישור הגעה", "תמונות מהחתונה", "המסע שלנו"],
                 headerTitle: "Shachar & Bes",
                 subtitle: "The Wedding",
                 date: "27.5.2026",
-                countdownTitle: "הספירה לאחור",
                 countdownLabels: ["ימים", "שעות", "דקות"],
                 proposalTitle: "ההצעה",
-                proposalDesc: "חיו מחדש את הרגע הקסום שבו בס ירד על ברך אחת במבצר קרויה. יום מיוחד זה סימן את תחילת המסע שלנו לנצח",
                 detailsTitle: "?מתי",
                 reception: "קבלת פנים",
                 ceremony: "חופה וקידושין",
@@ -883,19 +834,16 @@
                 journeyTitle: "המסע שלנו",
                 journeyText: "מאז אותו יום בו נפגשנו לראשונה - 10 באוקטובר, 2019",
                 memoriesTitle: "הזיכרונות שלנו",
-                memories: ["תמונות אירוסין", "המקום של הדייט הראשון", "רגע ההצעה", "משפחה וחברים"],
                 footer: "מחכים לראותכם, שחר ובס",
                 labels: ["שנים", "חודשים", "ימים", "סה״כ ימים"]
             },
             en: {
-                nav: ["Countdown", "Proposal Video", "Wedding Details", "RSVP", "Wedding Photos", "Our Moments", "Our Journey"],
+                nav: ["Proposal Video", "Wedding Details", "RSVP", "Wedding Photos", "Our Journey"],
                 headerTitle: "Shachar & Bes",
                 subtitle: "The Wedding",
                 date: "27.5.2026",
-                countdownTitle: "Countdown to Our Big Day",
                 countdownLabels: ["Days", "Hours", "Minutes"],
                 proposalTitle: "The Proposal",
-                proposalDesc: "Relive the magical moment when Bes got down on one knee at the fortress of Krujë. This special day marked the beginning of our journey to forever.",
                 detailsTitle: "Wedding Details",
                 reception: "Reception",
                 ceremony: "Ceremony",
@@ -913,8 +861,7 @@
                 rsvpTitle: "RSVP",
                 journeyTitle: "Our Journey Together",
                 journeyText: "Since that special day on October 10th, 2019, when our paths first crossed, we've been writing our love story together. Every day has brought us closer to this moment - our wedding day!",
-                memoriesTitle: "Our Memories",
-                memories: ["Engagement Photos", "First Date Spot", "Proposal Moment", "Family & Friends"],
+                memoriesTitle: "",
                 footer: "With love, Shachar & Bes",
                 labels: ["Years", "Months", "Days", "Total Days"]
             }
@@ -925,18 +872,16 @@
         function applyTranslations(lang) {
             const t = translations[lang];
             document.querySelectorAll('.nav-link').forEach((el, i) => el.textContent = t.nav[i]);
-            document.querySelector('.main-title').textContent = t.headerTitle;
-            document.querySelector('.subtitle').textContent = t.subtitle;
-            document.querySelector('.date').textContent = t.date;
-            document.querySelector('#countdown .section-title').textContent = t.countdownTitle;
+            // The following elements have been removed from the HTML, so skip updating them:
+            // .main-title, .subtitle, .date, #countdown .section-title, #photos .section-title, #photos .photo-placeholder
             document.querySelectorAll('#countdown .countdown-label').forEach((el, i) => el.textContent = t.countdownLabels[i]);
             document.querySelector('#video .section-title').textContent = t.proposalTitle;
-            document.querySelector('#video .video-description p').textContent = t.proposalDesc;
             document.querySelector('#details .section-title').textContent = t.detailsTitle;
             document.querySelectorAll('#details .detail-card h3')[0].textContent = t.reception;
             document.querySelectorAll('#details .detail-card p')[0].textContent = t.receptionText;
             document.querySelectorAll('#details .detail-card h3')[1].textContent = t.ceremony;
             document.querySelectorAll('#details .detail-card p')[1].textContent = t.ceremonyText;
+            // document.getElementById('countdown-desc').innerHTML = t.countdownDesc; // No longer present
             document.querySelector('#location .section-title').textContent = t.venueTitle;
             document.querySelector('#location .location-text h3').textContent = t.venueName;
             document.querySelector('#location .location-text p strong').textContent = "כתובת:";
@@ -951,8 +896,6 @@
             document.querySelector('#rsvp .section-title').textContent = t.rsvpTitle;
             document.querySelector('#timer .section-title').textContent = t.journeyTitle;
             document.querySelector('#timer .journey-text p').textContent = t.journeyText;
-            document.querySelector('#photos .section-title').textContent = t.memoriesTitle;
-            document.querySelectorAll('#photos .photo-placeholder').forEach((el, i) => el.textContent = t.memories[i]);
             document.querySelector('.footer p').textContent = t.footer;
             document.querySelectorAll('#timer .timer-label').forEach((el, i) => el.textContent = t.labels[i]);
         }
