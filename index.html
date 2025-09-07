@@ -608,12 +608,12 @@
                 <option value="en" lang="en">English</option>
                 <option value="he" lang="he">עברית</option>
             </select>
-            <a href="#location" class="nav-link">Wedding Details</a>
-            <a href="#rsvp" class="nav-link">RSVP</a>
-            <a href="#timer" class="nav-link">Our Journey</a>
-            <a href="#video" class="nav-link">Proposal Video</a>
-            <a href="#wedding-photos" class="nav-link">Wedding Photos</a>
-            <a href="#faq" class="nav-link">FAQ</a>
+            <a href="#location" class="nav-link" data-section="location">Wedding Details</a>
+            <a href="#rsvp" class="nav-link" data-section="rsvp">RSVP</a>
+            <a href="#wedding-photos" class="nav-link" data-section="wedding-photos">Wedding Photos</a>
+            <a href="#timer" class="nav-link" data-section="timer">Our Journey</a>
+            <a href="#video" class="nav-link" data-section="video">Proposal Video</a>
+            <a href="#faq" class="nav-link" data-section="faq">FAQ</a>
         </div>
     </nav>
 
@@ -755,7 +755,7 @@
                 </div>
                 <div class="faq-item">
                     <h3 class="faq-question">What should I wear?</h3>
-                    <p class="faq-answer">The wedding is mostly indoors, feel whatever you feel like.</p>
+                    <p class="faq-answer">The wedding is mostly indoors, wear whatever you feel like.</p>
                 </div>
                 <div class="faq-item">
                     <h3 class="faq-question">Are you excited as we?</h3>
@@ -858,7 +858,7 @@
         // Language toggle functionality
         const translations = {
             he: {
-                nav: ["פרטי החתונה", "אישור הגעה", "המסע שלנו", "סרטון ההצעה", "תמונות מהחתונה", "שאלות נפוצות"],
+                nav: ["פרטי החתונה", "אישור הגעה", "תמונות מהחתונה", "המסע שלנו", "סרטון ההצעה", "שאלות נפוצות"],
                 faqTitle: "שאלות נפוצות",
                 faqQuestions: [
                     "איזה אוכל יוגש?",
@@ -898,7 +898,7 @@
             },
 
             en: {
-                nav: ["Wedding Details", "RSVP", "Our Journey", "Proposal Video", "Wedding Photos", "FAQ"],
+                nav: ["Wedding Details", "RSVP", "Wedding Photos", "Our Journey", "Proposal Video", "FAQ"],
                 faqTitle: "FAQ",
                 faqQuestions: [
                     "What type of food will be served?",
@@ -937,7 +937,7 @@
                 labels: ["Years", "Months", "Days", "Total Days"]
             },
             al: {
-                nav: ["Detajet e Dasmës", "RSVP", "Udhëtimi Ynë", "Video e Propozimit", "Fotot e Dasmës", "Pyetje"],
+                nav: ["Detajet e Dasmës", "RSVP", "Fotot e Dasmës", "Udhëtimi Ynë", "Video e Propozimit", "Pyetje"],
                 faqTitle: "Pyetje",
                 faqQuestions: [
                     "Çfarë ushqimi do të shërbehet?",
@@ -982,7 +982,10 @@
         function applyTranslations(lang) {
             const t = translations[lang];
             const navLinks = Array.from(document.querySelectorAll('.nav-link'));
-            navLinks.forEach((el, i) => el.textContent = t.nav[i]);
+            // Always keep nav links in the correct DOM order and update their text only
+            navLinks.forEach((el, i) => {
+                el.textContent = t.nav[i];
+            });
             const navContainer = document.querySelector('.nav-container');
             if (lang === 'he') {
                 navLinks.reverse().forEach(link => navContainer.appendChild(link));
