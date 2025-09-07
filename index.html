@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shachar & Bes</title>
-    <link href="https://fonts.googleapis.com/css2?family=The+Seasons&family=Kedem:wght@400;700&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=The+Seasons&family=Kedem:wght@400;700&family=Dancing+Script:wght@400;600;700&family=Varela+Round&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -30,6 +30,7 @@
 
         body[dir="rtl"], html[dir="rtl"] {
             direction: rtl;
+            font-family: 'Varela Round', 'Kedem', Helvetica, sans-serif !important;
         }
 
         body[dir="rtl"] .section,
@@ -607,29 +608,15 @@
                 <option value="en" lang="en">English</option>
                 <option value="he" lang="he">עברית</option>
             </select>
-            <a href="#video" class="nav-link">Proposal Video</a>
             <a href="#location" class="nav-link">Wedding Details</a>
             <a href="#rsvp" class="nav-link">RSVP</a>
-            <a href="#wedding-photos" class="nav-link">Wedding Photos</a>
             <a href="#timer" class="nav-link">Our Journey</a>
+            <a href="#video" class="nav-link">Proposal Video</a>
+            <a href="#wedding-photos" class="nav-link">Wedding Photos</a>
             <a href="#faq" class="nav-link">FAQ</a>
         </div>
     </nav>
 
-    <section id="video" class="section">
-        <div class="container">
-            <h2 class="section-title">The Proposal</h2>
-            <div class="video-container">
-                <!-- Replace the src URL with your actual proposal video -->
-                <iframe src="imgs/IMG_6807.mp4" 
-                        type="video/mp4"
-                        title="Our Proposal Video"
-                        allowfullscreen 
-                        loading="lazy">
-                </iframe>
-            </div>
-        </div>
-    </section>
 
     <section id="location" class="section location-section">
         <div class="container">
@@ -686,6 +673,7 @@
         </div>
     </section>
 
+
     <section id="wedding-photos" class="section">
         <div class="container">
             <h2 class="section-title">Wedding Photos</h2>
@@ -731,6 +719,21 @@
             </div>
             <div class="journey-text">
                 <p>Since that special day on October 10th, 2019, when our paths first crossed, we've been writing our love story together. Every day has brought us closer to this moment - our wedding day!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="video" class="section">
+        <div class="container">
+            <h2 class="section-title">The Proposal</h2>
+            <div class="video-container">
+                <!-- Replace the src URL with your actual proposal video -->
+                <iframe src="imgs/IMG_6807.mp4" 
+                        type="video/mp4"
+                        title="Our Proposal Video"
+                        allowfullscreen 
+                        loading="lazy">
+                </iframe>
             </div>
         </div>
     </section>
@@ -855,7 +858,7 @@
         // Language toggle functionality
         const translations = {
             he: {
-                nav: ["ההצעה", "פרטים", "אישור הגעה", "תמונות מהחתונה", "המסע שלנו", "שאלות נפוצות"],
+                nav: ["פרטי החתונה", "אישור הגעה", "המסע שלנו", "סרטון ההצעה", "תמונות מהחתונה", "שאלות נפוצות"],
                 faqTitle: "שאלות נפוצות",
                 faqQuestions: [
                     "איזה אוכל יוגש?",
@@ -895,7 +898,7 @@
             },
 
             en: {
-                nav: ["Proposal Video", "Wedding Details", "RSVP", "Wedding Photos", "Our Journey", "FAQ"],
+                nav: ["Wedding Details", "RSVP", "Our Journey", "Proposal Video", "Wedding Photos", "FAQ"],
                 faqTitle: "FAQ",
                 faqQuestions: [
                     "What type of food will be served?",
@@ -934,7 +937,7 @@
                 labels: ["Years", "Months", "Days", "Total Days"]
             },
             al: {
-                nav: ["Video e Propozimit", "Detajet e Dasmës", "RSVP", "Fotot e Dasmës", "Udhëtimi Ynë", "Pyetje"],
+                nav: ["Detajet e Dasmës", "RSVP", "Udhëtimi Ynë", "Video e Propozimit", "Fotot e Dasmës", "Pyetje"],
                 faqTitle: "Pyetje",
                 faqQuestions: [
                     "Çfarë ushqimi do të shërbehet?",
