@@ -56,10 +56,6 @@
             content: none;
         }
 
-        .header-content {
-            display: none;
-        }
-
         .main-title {
             font-family: 'Dancing Script', cursive;
             font-size: 5rem;
@@ -118,7 +114,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             max-width: 800px;
-            margin: 50px auto 0;
+            margin: 20px auto 0;
 
 
         /* New: background and overlap for countdown */
@@ -189,7 +185,8 @@
 
         .nav {
             background: var(--white);
-            padding: 20px 0;
+            padding: 12px 0 12px 0;
+            min-height: 32px;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -202,8 +199,8 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 40px;
-            padding: 0 20px;
+            gap: 36px;
+            padding: 0 10px 0 10px;
         }
 
         .nav-link {
@@ -607,11 +604,11 @@
 </head>
 <body>
     <header class="header">
-    <img src="./imgs/cover.jpg" alt="Cover" style="display:block;margin:0 auto;max-width:100%;height:auto;" />
+    <img src="./imgs/cover.jpg" alt="Cover" style="display:block;margin:0 auto;max-width:85%;height:auto;margin-bottom:-80px;" />
     </header>
 
     <section id="countdown" class="section">
-    <div class="countdown-container" style="margin-top: -80px;">
+    <div class="countdown-container" style="margin-top:0; margin-bottom:-40px;">
             <div class="countdown-card">
                 <span id="countdown-days" class="countdown-number">0</span>
                 <div class="countdown-label">Days</div>
@@ -634,18 +631,13 @@
                 <option value="en" lang="en">English</option>
                 <option value="he" lang="he">עברית</option>
             </select>
-            <a href="#location" class="nav-link" data-section="location">Wedding Details</a>
-            <a href="#rsvp" class="nav-link" data-section="rsvp">RSVP</a>
-            <a href="#wedding-photos" class="nav-link" data-section="wedding-photos">Wedding Photos</a>
-            <a href="#timer" class="nav-link" data-section="timer">Our Journey</a>
-            <a href="#video" class="nav-link" data-section="video">Proposal Video</a>
-            <a href="#faq" class="nav-link" data-section="faq">FAQ</a>
+            <span id="nav-links-placeholder"></span>
         </div>
     </nav>
 
 
     <section id="location" class="section location-section">
-        <div class="container">
+        <div class="container" style="margin-top: 150px;">
             <h2 class="section-title">Venue</h2>
             <div class="location-content">
                 <div class="location-text">
@@ -911,12 +903,25 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const href = this.getAttribute('href');
+                const target = document.querySelector(href);
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    // Special scroll for Wedding Details to hide cover photo
+                    if (href === '#location') {
+                        // Get the top of the section relative to the document
+                        const rect = target.getBoundingClientRect();
+                        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                        // Scroll so the section is at the very top
+                        window.scrollTo({
+                            top: rect.top + scrollTop,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
         });
@@ -993,7 +998,15 @@
         // Language toggle functionality
         const translations = {
             he: {
-                nav: ["פרטי החתונה", "אישור הגעה", "ספר אורחים", "תמונות מהחתונה", "המסע שלנו", "סרטון ההצעה", "שאלות נפוצות"],
+                // Hebrew: FAQ, Journey, Photos, Guestbook, RSVP, Details (RTL order)
+                nav: [
+                    { label: "פרטי החתונה", href: "#location" },
+                    { label: "אישור הגעה", href: "#rsvp" },
+                    { label: "ספר אורחים", href: "#guestbook" },
+                    { label: "תמונות מהחתונה", href: "#wedding-photos" },
+                    { label: "המסע שלנו", href: "#timer" },
+                    { label: "שאלות נפוצות", href: "#faq" }
+                ],
                 faqTitle: "שאלות נפוצות",
                 faqQuestions: [
                     "איזה אוכל יוגש?",
@@ -1034,7 +1047,14 @@
             },
 
             en: {
-                nav: ["Wedding Details", "RSVP", "Guestbook", "Wedding Photos", "Our Journey", "Proposal Video", "FAQ"],
+                nav: [
+                    { label: "FAQ", href: "#faq" },
+                    { label: "Our Journey", href: "#timer" },
+                    { label: "Wedding Photos", href: "#wedding-photos" }, 
+                    { label: "Guestbook", href: "#guestbook" },  
+                    { label: "RSVP", href: "#rsvp" },
+                    { label: "Wedding Details", href: "#location" }
+                ],
                 faqTitle: "FAQ",
                 faqQuestions: [
                     "What type of food will be served?",
@@ -1074,7 +1094,14 @@
                 labels: ["Years", "Months", "Days", "Total Days"]
             },
             al: {
-                nav: ["Detajet e Dasmës", "RSVP", "Libri i Miqve", "Fotot e Dasmës", "Udhëtimi Ynë", "Video e Propozimit", "Pyetje"],
+                nav: [
+                    { label: "Pyetje", href: "#faq" },
+                    { label: "Udhëtimi Ynë", href: "#timer" },
+                    { label: "Fotot e Dasmës", href: "#wedding-photos" },  
+                    { label: "Libri i Miqve", href: "#guestbook" },
+                    { label: "RSVP", href: "#rsvp" },  
+                    { label: "Detajet e Dasmës", href: "#location" }     
+                ],
                 faqTitle: "Pyetje",
                 faqQuestions: [
                     "Çfarë ushqimi do të shërbehet?",
@@ -1119,18 +1146,43 @@
 
         function applyTranslations(lang) {
             const t = translations[lang];
-            const navLinks = Array.from(document.querySelectorAll('.nav-link'));
-            // Always keep nav links in the correct DOM order and update their text only
-            navLinks.forEach((el, i) => {
-                el.textContent = t.nav[i];
-            });
             const navContainer = document.querySelector('.nav-container');
-            if (lang === 'he') {
-                navLinks.reverse().forEach(link => navContainer.appendChild(link));
-            } else {
-                // Restore original order: select is always first, then nav-links in original order
-                const select = navContainer.querySelector('#lang-select');
-            }
+            // Remove all nav links
+            document.querySelectorAll('.nav-link').forEach(link => link.remove());
+            // Insert new nav links in correct order and with correct hrefs
+            const placeholder = document.getElementById('nav-links-placeholder');
+            t.nav.forEach(item => {
+                const a = document.createElement('a');
+                a.className = 'nav-link';
+                a.setAttribute('data-section', item.href.replace('#',''));
+                a.href = item.href;
+                a.textContent = item.label;
+                placeholder.parentNode.insertBefore(a, placeholder.nextSibling);
+            });
+            // Re-attach click listeners after nav links are rebuilt
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    const target = document.querySelector(href);
+                    if (target) {
+                        // Special scroll for Wedding Details to hide cover photo
+                        if (href === '#location') {
+                            const rect = target.getBoundingClientRect();
+                            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                            window.scrollTo({
+                                top: rect.top + scrollTop,
+                                behavior: 'smooth'
+                            });
+                        } else {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
             // Guestbook section translation
             if (document.querySelector('#guestbook')) {
                 document.querySelector('#guestbook .section-title').textContent = t.guestbookTitle || 'Guestbook';
