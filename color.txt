@@ -1,4 +1,4 @@
-white ffffff
+white f8f8f8
 pink ca9c79
 green bcbc47
 gold e8d278
