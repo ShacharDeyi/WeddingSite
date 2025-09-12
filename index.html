@@ -326,6 +326,31 @@
             margin-top: 50px;
         }
 
+        /* Guestbook responsive improvements */
+        #guestbook .details-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 900px) {
+            #guestbook .details-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 600px) {
+            #guestbook .details-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            #guestbook button[aria-label] {
+                font-size: 1.5rem !important;
+                padding: 0 8px;
+            }
+            #guestbook .detail-card {
+                padding: 20px 10px;
+                font-size: 1em;
+            }
+        }
+
         .detail-card {
             background: var(--white);
             padding: 40px;
