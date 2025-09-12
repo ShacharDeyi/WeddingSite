@@ -601,6 +601,7 @@
             </div>
         </div>
     </section>
+
     <nav class="nav">
         <div class="nav-container">
             <select id="lang-select" style="background: var(--pink); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 600; cursor: pointer;">
@@ -673,6 +674,16 @@
         </div>
     </section>
 
+    <section id="guestbook" class="section">
+        <div class="container">
+            <h2 class="section-title">Guestbook</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 16px; direction: ltr;">
+                <button id="guestbook-left" aria-label="Previous" style="background: none; border: none; font-size: 2.2rem; cursor: pointer; color: var(--gray);">&#8592;</button>
+                <div class="details-grid" id="guestbook-cards" style="margin-top:0; grid-template-columns: repeat(3, 1fr); width: 100%; max-width: 1000px;"></div>
+                <button id="guestbook-right" aria-label="Next" style="background: none; border: none; font-size: 2.2rem; cursor: pointer; color: var(--gray);">&#8594;</button>
+            </div>
+        </div>
+    </section>
 
     <section id="wedding-photos" class="section">
         <div class="container">
@@ -772,6 +783,105 @@
     </footer>
 
     <script>
+        // Guestbook data: update here to change cards easily
+        const guestbookEntries = [
+            {
+                message: "Best wedding everrrrr",
+                name: "Shachar",
+                rtl: false,
+                border: 'var(--green)'
+            },
+            {
+                message: "חגיגות של הלייף",
+                name: "בצ'",
+                rtl: true,
+                border: 'var(--gold)'
+            },
+            {
+                message: "A day to remember forever",
+                name: "Guest",
+                rtl: false,
+                border: 'var(--pink)'
+            },
+            {
+                message: "Unforgettable night!",
+                name: "Anonymous",
+                rtl: false,
+                border: 'var(--gray)'
+            },
+                        {
+                message: "בדוווווקקקקק!",
+                name: "100ממת",
+                rtl: true,
+                border: 'var(--gray)'
+            },
+            {
+                message: "So much love in the air!",
+                name: "cutie patootie",
+                rtl: false,
+                border: 'var(--gold)'
+            }
+        ];
+
+        // Render guestbook cards dynamically
+        function renderGuestbookCards() {
+            const container = document.getElementById('guestbook-cards');
+            container.innerHTML = '';
+            guestbookEntries.forEach(entry => {
+                const card = document.createElement('div');
+                card.className = 'detail-card';
+                card.setAttribute('data-rtl', entry.rtl);
+                card.style.borderColor = entry.border;
+                card.style.display = 'none';
+                const p = document.createElement('p');
+                p.style.minHeight = '60px';
+                p.style.direction = entry.rtl ? 'rtl' : 'ltr';
+                p.style.textAlign = entry.rtl ? 'right' : 'left';
+                p.style.fontFamily = "'The Seasons', serif";
+                p.textContent = entry.message;
+                const div = document.createElement('div');
+                div.style.marginTop = '24px';
+                div.style.fontSize = '0.95em';
+                div.style.color = 'var(--gray)';
+                div.style.fontStyle = 'italic';
+                div.style.direction = entry.rtl ? 'rtl' : 'ltr';
+                div.style.textAlign = entry.rtl ? 'right' : 'left';
+                div.style.fontFamily = "'The Seasons', serif";
+                div.innerHTML = `— <span>${entry.name}</span>`;
+                card.appendChild(p);
+                card.appendChild(div);
+                container.appendChild(card);
+            });
+        }
+
+        // Guestbook card carousel logic
+        (function() {
+            renderGuestbookCards();
+            const cards = Array.from(document.querySelectorAll('#guestbook-cards .detail-card'));
+            const visibleCount = 3;
+            let start = 0;
+            function showCards() {
+                const n = cards.length;
+                for (let i = 0; i < n; i++) {
+                    if ((i - start + n) % n < visibleCount) {
+                        cards[i].style.display = '';
+                    } else {
+                        cards[i].style.display = 'none';
+                    }
+                }
+            }
+            function prev() {
+                start = (start - 1 + cards.length) % cards.length;
+                showCards();
+            }
+            function next() {
+                start = (start + 1) % cards.length;
+                showCards();
+            }
+            document.getElementById('guestbook-left').addEventListener('click', prev);
+            document.getElementById('guestbook-right').addEventListener('click', next);
+            showCards();
+        })();
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -858,7 +968,7 @@
         // Language toggle functionality
         const translations = {
             he: {
-                nav: ["פרטי החתונה", "אישור הגעה", "תמונות מהחתונה", "המסע שלנו", "סרטון ההצעה", "שאלות נפוצות"],
+                nav: ["פרטי החתונה", "אישור הגעה", "ספר אורחים", "תמונות מהחתונה", "המסע שלנו", "סרטון ההצעה", "שאלות נפוצות"],
                 faqTitle: "שאלות נפוצות",
                 faqQuestions: [
                     "איזה אוכל יוגש?",
@@ -870,6 +980,7 @@
                     "החתונה מתקיימת בעיקר באולם סגור, תרגישו בנוח לבוא כפי שנעים לכם.",
                     "כן!!"
                 ],
+                guestbookTitle: "ספר אורחים",
                 headerTitle: "שחר ובס",
                 subtitle: "החתונה",
                 date: "27.5.2026",
@@ -898,7 +1009,7 @@
             },
 
             en: {
-                nav: ["Wedding Details", "RSVP", "Wedding Photos", "Our Journey", "Proposal Video", "FAQ"],
+                nav: ["Wedding Details", "RSVP", "Guestbook", "Wedding Photos", "Our Journey", "Proposal Video", "FAQ"],
                 faqTitle: "FAQ",
                 faqQuestions: [
                     "What type of food will be served?",
@@ -910,6 +1021,7 @@
                     "The wedding is mostly indoors, wear whatever you feel like.",
                     "YES"
                 ],
+                guestbookTitle: "Guestbook",
                 headerTitle: "Shachar & Bes",
                 subtitle: "The Wedding",
                 date: "27.5.2026",
@@ -937,7 +1049,7 @@
                 labels: ["Years", "Months", "Days", "Total Days"]
             },
             al: {
-                nav: ["Detajet e Dasmës", "RSVP", "Fotot e Dasmës", "Udhëtimi Ynë", "Video e Propozimit", "Pyetje"],
+                nav: ["Detajet e Dasmës", "RSVP", "Libri i Miqve", "Fotot e Dasmës", "Udhëtimi Ynë", "Video e Propozimit", "Pyetje"],
                 faqTitle: "Pyetje",
                 faqQuestions: [
                     "Çfarë ushqimi do të shërbehet?",
@@ -949,6 +1061,7 @@
                     "Dasma është kryesisht brenda, vishuni si të ndiheni rehat.",
                     "PO!"
                 ],
+                guestbookTitle: "Libri i Miqve",
                 headerTitle: "Shachar & Bes",
                 subtitle: "Dasma",
                 date: "27.5.2026",
@@ -992,6 +1105,14 @@
             } else {
                 // Restore original order: select is always first, then nav-links in original order
                 const select = navContainer.querySelector('#lang-select');
+            }
+            // Guestbook section translation
+            if (document.querySelector('#guestbook')) {
+                document.querySelector('#guestbook .section-title').textContent = t.guestbookTitle || 'Guestbook';
+                const guestbookCards = document.querySelectorAll('#guestbook .detail-card h3');
+                if (t.guestbookCards) {
+                    guestbookCards.forEach((el, i) => { if (t.guestbookCards[i]) el.textContent = t.guestbookCards[i]; });
+                }
             }
             // FAQ translations
             if (document.querySelector('#faq')) {
