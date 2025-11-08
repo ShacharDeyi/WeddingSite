@@ -325,26 +325,38 @@
 
         /* Guestbook responsive improvements */
         #guestbook .details-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            display: grid;
+            gap: 16px;
+            width: 100%;
+            justify-items: center;
+        }
+        #guestbook .detail-card {
+            height: 100%;
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
         }
         @media (max-width: 900px) {
             #guestbook .details-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            #guestbook .detail-card {
+                max-width: none;
             }
         }
         @media (max-width: 600px) {
             #guestbook .details-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
+                grid-template-columns: minmax(0, 1fr);
             }
             #guestbook button[aria-label] {
                 font-size: 1.5rem !important;
-                padding: 0 8px;
+                padding: 0 4px;
             }
             #guestbook .detail-card {
-                padding: 20px 10px;
+                padding: 16px;
                 font-size: 1em;
+                width: 100%;
+                min-width: 280px;
             }
         }
 
@@ -708,10 +720,10 @@
                     <button type="submit" style="background: var(--pink); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">Send Message ✨</button>
                 </form>
             </div>
-            <div style="display: flex; align-items: center; justify-content: center; gap: 16px; direction: ltr;">
-                <button id="guestbook-left" aria-label="Previous" style="background: none; border: none; font-size: 2.2rem; cursor: pointer; color: var(--gray);">&#8592;</button>
-                <div class="details-grid" id="guestbook-cards" style="margin-top:0; grid-template-columns: repeat(3, 1fr); width: 100%; max-width: 1000px;"></div>
-                <button id="guestbook-right" aria-label="Next" style="background: none; border: none; font-size: 2.2rem; cursor: pointer; color: var(--gray);">&#8594;</button>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; direction: ltr; width: 100%;">
+                <button id="guestbook-left" aria-label="Previous" style="background: none; border: none; font-size: 2.2rem; cursor: pointer; color: var(--gray); flex-shrink: 0; padding: 0 8px;">&#8592;</button>
+                <div class="details-grid" id="guestbook-cards" style="margin-top:0; grid-template-columns: repeat(3, 1fr); flex-grow: 1; gap: 16px;"></div>
+                <button id="guestbook-right" aria-label="Next" style="background: none; border: none; font-size: 2.2rem; cursor: pointer; color: var(--gray); flex-shrink: 0; padding: 0 8px;">&#8594;</button>
             </div>
         </div>
     </section>
@@ -972,12 +984,25 @@
             function showCards() {
                 const n = cards.length;
                 const visibleCount = getVisibleCount();
-                for (let i = 0; i < n; i++) {
-                    if ((i - start + n) % n < visibleCount) {
-                        cards[i].style.display = '';
-                    } else {
-                        cards[i].style.display = 'none';
-                    }
+                // First hide all cards
+                cards.forEach(card => {
+                    card.style.display = 'none';
+                });
+                
+                // Show visible cards
+                for (let i = 0; i < Math.min(visibleCount, n); i++) {
+                    const index = (start + i) % n;
+                    cards[index].style.display = '';
+                }
+                
+                // Update grid columns based on visible count
+                const container = document.getElementById('guestbook-cards');
+                if (visibleCount === 1) {
+                    container.style.gridTemplateColumns = 'minmax(280px, 600px)';
+                } else if (visibleCount === 2) {
+                    container.style.gridTemplateColumns = 'repeat(2, 1fr)';
+                } else {
+                    container.style.gridTemplateColumns = 'repeat(3, 1fr)';
                 }
             }
             
