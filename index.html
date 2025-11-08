@@ -330,7 +330,7 @@
         }
         @media (max-width: 900px) {
             #guestbook .details-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         @media (max-width: 600px) {
@@ -960,11 +960,18 @@
         // Guestbook card carousel logic (extracted to separate function for re-initialization)
         function initCarousel() {
             const cards = Array.from(document.querySelectorAll('#guestbook-cards .detail-card'));
-            const visibleCount = 3;
+            function getVisibleCount() {
+                const width = window.innerWidth;
+                if (width > 900) return 3;
+                if (width > 600) return 2;
+                return 1;
+            }
+            
             let start = 0;
             
             function showCards() {
                 const n = cards.length;
+                const visibleCount = getVisibleCount();
                 for (let i = 0; i < n; i++) {
                     if ((i - start + n) % n < visibleCount) {
                         cards[i].style.display = '';
