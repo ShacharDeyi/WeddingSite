@@ -699,6 +699,19 @@
                 <div class="details-grid" id="guestbook-cards" style="margin-top:0; grid-template-columns: repeat(3, 1fr); width: 100%; max-width: 1000px;"></div>
                 <button id="guestbook-right" aria-label="Next" style="background: none; border: none; font-size: 2.2rem; cursor: pointer; color: var(--gray);">&#8594;</button>
             </div>
+            <div class="guestbook-form" style="max-width: 600px; margin: 50px auto 40px auto; background: var(--white); padding: 32px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); border: 2px solid var(--pink);">
+                <form id="guestMessageForm" style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label for="guestMessage" style="font-weight: 600; color: var(--gray);">Your Message:</label>
+                        <textarea id="guestMessage" name="message" rows="4" style="width: 100%; padding: 12px; border: 2px solid var(--green); border-radius: 12px; font-family: inherit; resize: vertical;" placeholder="Share your wishes..."></textarea>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label for="guestName" style="font-weight: 600; color: var(--gray);">Your Name:</label>
+                        <input type="text" id="guestName" name="name" style="width: 100%; padding: 12px; border: 2px solid var(--gold); border-radius: 12px; font-family: inherit;" placeholder="Enter your name">
+                    </div>
+                    <button type="submit" style="background: var(--pink); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">Send Message ✨</button>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -799,7 +812,52 @@
         </div>
     </footer>
 
-    <script>
+<script>
+        // Guest message form handling
+        document.getElementById('guestMessageForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const message = document.getElementById('guestMessage').value;
+            const name = document.getElementById('guestName').value;
+            
+            const currentLang = document.getElementById('lang-select').value;
+            const t = translations[currentLang];
+
+            if (!message || !name) {
+                alert(t.guestbookForm.error);
+                return;
+            }
+            
+            // Send to Google Sheet
+            try {
+                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw2n6qG63PYAi9IZ5uN3Wjp9T6B74-fAChPGsnTAwSsa7qXCOw7oc3mfdsrqQ8Q4ihRIQ/exec'; // Replace with your actual deployment URL
+                
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Important for Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        message: message
+                    })
+                });
+
+                // Note: with no-cors mode, we can't read the response
+                // but the request will still work
+                console.log('Message sent:', message, 'Name:', name);
+
+                // Clear form
+                document.getElementById('guestMessage').value = '';
+                document.getElementById('guestName').value = '';
+                alert(t.guestbookForm.success);
+
+            } catch (error) {
+                console.error('Error sending message:', error);
+                alert(t.guestbookForm.error || 'Failed to send message. Please try again.');
+            }
+        });
+
         // Guestbook data: update here to change cards easily
         const guestbookEntries = [
             {
@@ -1018,6 +1076,17 @@
                     "החתונה מתקיימת בעיקר באולם סגור, תרגישו בנוח לבוא כפי שנעים לכם.",
                     "כן!!"
                 ],
+                guestbookForm: {
+                    message: "המסר שלך:",
+                    name: "השם שלך:",
+                    placeholder: {
+                        message: "שתפו את האיחולים שלכם...",
+                        name: "הכניסו את שמכם"
+                    },
+                    submit: "שלח מסר ✨",
+                    error: "אנא מלאו את כל השדות",
+                    success: "תודה על המסר! הוא יתווסף לספר האורחים בקרוב"
+                },
                 guestbookTitle: "ספר אורחים",
                 headerTitle: "שחר ובס",
                 subtitle: "החתונה",
@@ -1030,7 +1099,7 @@
                 receptionText: "בואו לחגוג איתנו עם אוכל, ריקודים וזיכרונות בלתי נשכחים תחת כיפת השמיים.",
                 ceremonyText: "הצטרפו אלינו כשנעמוד תחת החופה בטקס אינטימי מוקפים בטבע וביקרים לנו.",
                 venueTitle: "המקום",
-                venueName: "מלון גארדן",
+                venueName: "גארדן הוטל ",
                 venueAddress: "קדושי יאסי 2, חיפה",
                 venueParking: "חניה זמינה",
                 weddingPhotosTitle: "תמונות מהחתונה",
@@ -1066,6 +1135,17 @@
                     "The wedding is mostly indoors, wear whatever you feel like.",
                     "YES"
                 ],
+                guestbookForm: {
+                    message: "Your Message:",
+                    name: "Your Name:",
+                    placeholder: {
+                        message: "Share your wishes...",
+                        name: "Enter your name"
+                    },
+                    submit: "Send Message ✨",
+                    error: "Please fill in all fields",
+                    success: "Thank you for your message! It will be added to our guestbook soon"
+                },
                 guestbookTitle: "Guestbook",
                 headerTitle: "Shachar & Bes",
                 subtitle: "The Wedding",
@@ -1113,6 +1193,17 @@
                     "Dasma është kryesisht brenda, vishuni si të ndiheni rehat.",
                     "PO!"
                 ],
+                guestbookForm: {
+                    message: "Mesazhi juaj:",
+                    name: "Emri juaj:",
+                    placeholder: {
+                        message: "Ndani dëshirat tuaja...",
+                        name: "Shkruani emrin tuaj"
+                    },
+                    submit: "Dërgo Mesazhin ✨",
+                    error: "Ju lutemi plotësoni të gjitha fushat",
+                    success: "Faleminderit për mesazhin! Do të shtohet në librin e miqve së shpejti"
+                },
                 guestbookTitle: "Libri i Miqve",
                 headerTitle: "Shachar & Bes",
                 subtitle: "Dasma",
@@ -1186,6 +1277,14 @@
             // Guestbook section translation
             if (document.querySelector('#guestbook')) {
                 document.querySelector('#guestbook .section-title').textContent = t.guestbookTitle || 'Guestbook';
+                // Update guestbook form labels and placeholders
+                if (t.guestbookForm) {
+                    document.querySelector('label[for="guestMessage"]').textContent = t.guestbookForm.message;
+                    document.querySelector('label[for="guestName"]').textContent = t.guestbookForm.name;
+                    document.getElementById('guestMessage').placeholder = t.guestbookForm.placeholder.message;
+                    document.getElementById('guestName').placeholder = t.guestbookForm.placeholder.name;
+                    document.querySelector('#guestMessageForm button[type="submit"]').textContent = t.guestbookForm.submit;
+                }
                 const guestbookCards = document.querySelectorAll('#guestbook .detail-card h3');
                 if (t.guestbookCards) {
                     guestbookCards.forEach((el, i) => { if (t.guestbookCards[i]) el.textContent = t.guestbookCards[i]; });
