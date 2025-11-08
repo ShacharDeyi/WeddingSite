@@ -481,7 +481,7 @@
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border: 3px dashed var(--pink);
+            border: 3px dashed var(--green);
         }
 
         .coming-soon:nth-child(2) {
@@ -491,12 +491,12 @@
         .coming-soon h3 {
             font-family: 'Dancing Script', cursive;
             font-size: 2rem;
-            color: var(--pink);
+            color: var(--gray);
             margin-bottom: 15px;
         }
 
         .coming-soon:nth-child(2) h3 {
-            color: var(--green);
+            color: var(--gray);
         }
 
         .coming-soon p {
@@ -643,7 +643,7 @@
                 <div class="location-text" style="display: flex; flex-direction: column; align-items: flex-start;">
                     <h3 style="margin-bottom: 10px;">Garden Hotel</h3>
                     <div style="background: var(--white); padding: 15px 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); width: 100%;">
-                        <p style="margin-bottom: 8px;"><strong>Address:</strong> Kdoshey Yassi 2, Haifa</p>
+                        <p style="margin-bottom: 8px;"><strong>Address:</strong> Kdoshei Jassy St 2, Haifa</p>
                         <p style="margin: 0;"><strong>Parking:</strong> Parking available</p>
                     </div>
                 </div>
@@ -718,22 +718,17 @@
 
     <section id="photos-section" class="section location-section">
         <div class="container">
+            <h2 class="section-title">Photos</h2>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
-                <div>
-                    <h2 class="section-title">Wedding Photos</h2>
-                    <div class="coming-soon">
-                        <div class="icon">📸</div>
-                        <h3>Coming Soon!</h3>
-                        <p>Our beautiful wedding photos will be available here soon. We can't wait to share all the magical moments from our special day with you!</p>
-                    </div>
+                <div class="coming-soon">
+                    <div class="icon">📸</div>
+                    <h3>Coming Soon!</h3>
+                    <p>Our beautiful wedding photos will be available here soon. We can't wait to share all the magical moments from our special day with you!</p>
                 </div>
-                <div>
-                    <h2 class="section-title">Wedding Magnets</h2>
-                    <div class="coming-soon">
-                        <div class="icon">🧲</div>
-                        <h3>Coming Soon!</h3>
-                        <p>Special wedding magnets featuring our favorite photos will be available for download here. A perfect keepsake to remember our wedding day!</p>
-                    </div>
+                <div class="coming-soon">
+                    <div class="icon">🧲</div>
+                    <h3>Coming Soon!</h3>
+                    <p>Special wedding magnets will be available for download here. A perfect keepsake to remember our wedding day!</p>
                 </div>
             </div>
         </div>
@@ -1114,7 +1109,7 @@
                     { label: "פרטי החתונה", href: "#location" },
                     { label: "אישור הגעה", href: "#rsvp" },
                     { label: "ספר אורחים", href: "#guestbook" },
-                    { label: "תמונות מהחתונה", href: "#wedding-photos" },
+                    { label: "תמונות", href: "#photos-section" },
                     { label: "המסע שלנו", href: "#timer" },
                     { label: "שאלות נפוצות", href: "#faq" }
                 ],
@@ -1155,11 +1150,10 @@
                 venueName: "גארדן הוטל ",
                 venueAddress: "קדושי יאסי 2, חיפה",
                 venueParking: "חניה זמינה",
-                weddingPhotosTitle: "תמונות",
+                photosTitle: "תמונות",
                 comingSoon: "בקרוב!",
-                comingSoonText: "תמונות החתונה שלנו יהיו זמינות כאן בקרוב. אנחנו לא יכולים לחכות לשתף אתכם בכל הרגעים הקסומים!",
-                magnetsTitle: "מגנטים",
-                magnetsText: "מגנטים מיוחדים עם התמונות האהובות עלינו יהיו זמינים להורדה כאן. מזכרת מושלמת ליום החתונה שלנו!",
+                photoComingSoonText: "תמונות החתונה שלנו יהיו זמינות כאן בקרוב. אנחנו לא יכולים לחכות לשתף אתכם בכל הרגעים הקסומים!",
+                magnetComingSoonText: "מגנטים מיוחדים יהיו זמינים להורדה כאן. מזכרת מושלמת ליום החתונה שלנו!",
                 rsvpTitle: "אישור הגעה",
                 journeyTitle: "המסע שלנו יחד",
                 journeyText: "מאז אותו יום מיוחד ב-10 באוקטובר 2019 שבו נפגשו דרכינו, אנחנו כותבים יחד את סיפור האהבה שלנו. כל יום מקרב אותנו לרגע הזה – יום החתונה שלנו!",
@@ -1172,7 +1166,7 @@
                 nav: [
                     { label: "FAQ", href: "#faq" },
                     { label: "Our Journey", href: "#timer" },
-                    { label: "Wedding Photos", href: "#wedding-photos" }, 
+                    { label: "Photos", href: "#photos-section" }, 
                     { label: "Guestbook", href: "#guestbook" },  
                     { label: "RSVP", href: "#rsvp" },
                     { label: "Wedding Details", href: "#location" }
@@ -1212,13 +1206,12 @@
                 ceremonyText: "Join us as we exchange vows in an intimate outdoor ceremony surrounded by nature and our loved ones.",
                 venueTitle: "Venue",
                 venueName: "Garden Hotel",
-                venueAddress: "Kdoshey Yassi 2, Haifa",
+                venueAddress: "Kdoshei Jassy St 2, Haifa, Israel",
                 venueParking: "Parking available",
-                weddingPhotosTitle: "Photos",
+                photosTitle: "Photos",
                 comingSoon: "Coming Soon!",
-                comingSoonText: "Our beautiful wedding photos will be available here soon. We can't wait to share all the magical moments from our special day with you!",
-                magnetsTitle: "Magnets",
-                magnetsText: "Special wedding magnets featuring our favorite photos will be available for download here. A perfect keepsake to remember our wedding day!",
+                photoComingSoonText: "Our beautiful wedding photos will be available here soon. We can't wait to share all the magical moments from our special day with you!",
+                magnetComingSoonText: "Special wedding magnets will be available for download here. A perfect keepsake to remember our wedding day!",
                 rsvpTitle: "RSVP",
                 journeyTitle: "Our Journey Together",
                 journeyText: "Since that special day on October 10th, 2019, when our paths first crossed, we've been writing our love story together. Every day has brought us closer to this moment - our wedding day!",
@@ -1230,7 +1223,7 @@
                 nav: [
                     { label: "Pyetje", href: "#faq" },
                     { label: "Udhëtimi Ynë", href: "#timer" },
-                    { label: "Fotot e Dasmës", href: "#wedding-photos" },  
+                    { label: "Fotografitë", href: "#photos-section" },  
                     { label: "Libri i Miqve", href: "#guestbook" },
                     { label: "RSVP", href: "#rsvp" },  
                     { label: "Detajet e Dasmës", href: "#location" }     
@@ -1270,13 +1263,12 @@
                 ceremonyText: "Bashkohuni me ne ndërsa shkëmbejmë premtimet në një ceremoni intime në natyrë me të dashurit tanë.",
                 venueTitle: "Vendi",
                 venueName: "Garden Hotel",
-                venueAddress: "Kdoshey Yassi 2, Haifa",
+                venueAddress: "Kdoshei Jassy St 2, Haifa, Izrael",
                 venueParking: "Parkim i disponueshëm",
-                weddingPhotosTitle: "Fotot e Dasmës",
+                photosTitle: "Fotografitë",
                 comingSoon: "Së Shpejti!",
-                comingSoonText: "Fotot tona të bukura të dasmës do të jenë së shpejti këtu. Mezi presim t'i ndajmë me ju!",
-                magnetsTitle: "Magnetët e Dasmës",
-                magnetsText: "Magnetë të veçantë me fotot tona të preferuara do të jenë për t’u shkarkuar këtu.",
+                photoComingSoonText: "Fotot tona të bukura të dasmës do të jenë së shpejti këtu. Mezi presim t'i ndajmë me ju!",
+                magnetComingSoonText: "Magnetë të veçantë me fotot tona të preferuara do të jenë për t’u shkarkuar këtu.",
                 rsvpTitle: "RSVP",
                 journeyTitle: "Udhëtimi Ynë",
                 journeyText: "Që nga 10 tetori 2019 kur u takuam për herë të parë, kemi shkruar historinë tonë të dashurisë çdo ditë. Tani jemi gati për ditën tonë të dasmës!",
@@ -1366,12 +1358,11 @@
             document.querySelectorAll('#location .location-text p')[0].innerHTML = "<strong>" + (lang === "he" ? "כתובת:" : "Address:") + "</strong> " + t.venueAddress;
             document.querySelectorAll('#location .location-text p')[1].innerHTML = "<strong>" + (lang === "he" ? "חניה:" : "Parking:") + "</strong> " + t.venueParking;
             // Update the photos section translations
-            document.querySelectorAll('#photos-section .section-title')[0].textContent = t.weddingPhotosTitle;
-            document.querySelectorAll('#photos-section .section-title')[1].textContent = t.magnetsTitle;
+            document.querySelector('#photos-section .section-title').textContent = t.photosTitle;
             document.querySelectorAll('#photos-section .coming-soon h3')[0].textContent = t.comingSoon;
             document.querySelectorAll('#photos-section .coming-soon h3')[1].textContent = t.comingSoon;
-            document.querySelectorAll('#photos-section .coming-soon p')[0].textContent = t.comingSoonText;
-            document.querySelectorAll('#photos-section .coming-soon p')[1].textContent = t.magnetsText;
+            document.querySelectorAll('#photos-section .coming-soon p')[0].textContent = t.photoComingSoonText;
+            document.querySelectorAll('#photos-section .coming-soon p')[1].textContent = t.magnetComingSoonText;
             document.querySelector('#rsvp .section-title').textContent = t.rsvpTitle;
             document.querySelector('#timer .section-title').textContent = t.journeyTitle;
             document.querySelector('#timer .journey-text p').textContent = t.journeyText;
