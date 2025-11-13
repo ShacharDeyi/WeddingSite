@@ -136,7 +136,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             max-width: 800px;
-            margin: 20px auto 0;
+            margin: 0px auto 0;
 
 
         /* New: background and overlap for countdown */
@@ -714,7 +714,7 @@
     </header>
 
     <section id="countdown" class="section">
-    <div class="countdown-container" style="margin-top:0; margin-bottom:-40px;">
+    <div class="countdown-container" style="margin-top:0; margin-bottom:0px;">
             <div class="countdown-card">
                 <span id="countdown-days" class="countdown-number">0</span>
                 <div class="countdown-label">Days</div>
@@ -742,8 +742,8 @@
     </nav>
 
 
-    <section id="location" class="section location-section" style="padding-bottom: 40px;">
-        <div class="container" style="margin-top: 100px;">
+    <section id="location" class="section location-section" style="padding-bottom: 0px;">
+        <div class="container" style="margin-top: 0px;">
             <h2 class="section-title" style="margin-bottom: 30px;">Venue</h2>
             <div class="location-content" style="gap: 30px;">
                 <div class="location-text" style="display: flex; flex-direction: column; align-items: flex-start;">
@@ -884,8 +884,9 @@
 	
     <section id="photos" class="section">
         <div class="container" style="text-align:center;">
-            
-            <img src="./imgs/std.jpg" alt="Our Memory" style="max-width:600px;width:100%;height:auto;display:inline-block;" />
+            <div id="gallery" style="max-width:600px;width:100%;height:auto;display:inline-block;">
+                <!-- Gallery images will be dynamically loaded here -->
+            </div>
         </div>
     </section>
 
@@ -1131,7 +1132,7 @@
             // Load messages from sheet
             loadGuestbookFromSheet();
         })();
-// Smooth scrolling for navigation links
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1518,5 +1519,28 @@
     applyTranslations("al");
 
 </script>
+<script>
+            const galleryPath = './imgs/gallery/';
+            const galleryElement = document.getElementById('gallery');
+
+            // List of images (to be updated dynamically if needed)
+            const galleryImages = [
+                '1.JPG',
+                '2.JPG',
+                '3.JPG',
+            ];
+
+            // Select a random image from the gallery
+            const randomImage = galleryImages[Math.floor(Math.random() * galleryImages.length)];
+
+            // Create an img element and set its attributes
+            const imgElement = document.createElement('img');
+            imgElement.src = galleryPath + randomImage;
+            imgElement.alt = 'Gallery Image';
+            imgElement.style = 'max-width:100%;height:auto;display:block;margin:0 auto;border-radius:10px;';
+
+            // Append the image to the gallery container
+            galleryElement.appendChild(imgElement);
+        </script>
 </body>
 </html>
