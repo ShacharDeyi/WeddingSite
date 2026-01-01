@@ -1480,17 +1480,34 @@
                 }
             }
 
-            // Update other sections
-            document.querySelector('#photos-section .section-title').textContent = t.photosTitle;
-            document.querySelectorAll('#photos-section .coming-soon h3')[0].textContent = t.comingSoon;
-            document.querySelectorAll('#photos-section .coming-soon h3')[1].textContent = t.comingSoon;
-            document.querySelector('#rsvp .section-title').textContent = t.rsvpTitle;
-            document.querySelector('.footer p').textContent = t.footer;
-
             // Update countdown labels
-            document.querySelectorAll('#countdown .countdown-label').forEach((el, i) => {
-                el.textContent = t.countdownLabels[i];
-            });
+            const countdownLabels = document.querySelectorAll('#countdown .countdown-label');
+            if (countdownLabels.length > 0 && t.countdownLabels) {
+                countdownLabels.forEach((el, i) => {
+                    if (t.countdownLabels[i]) {
+                        el.textContent = t.countdownLabels[i];
+                    }
+                });
+            }
+
+            // Update other sections
+            const photosTitle = document.querySelector('#photos-section .section-title');
+            if (photosTitle) photosTitle.textContent = t.photosTitle;
+            
+            const comingSoonElements = document.querySelectorAll('#photos-section .coming-soon h3');
+            if (comingSoonElements.length >= 2) {
+                comingSoonElements[0].textContent = t.comingSoon;
+                comingSoonElements[1].textContent = t.comingSoon;
+            }
+            
+            const rsvpTitle = document.querySelector('#rsvp .section-title');
+            if (rsvpTitle) rsvpTitle.textContent = t.rsvpTitle;
+            
+            // Update footer
+            const footerElement = document.querySelector('.footer p');
+            if (footerElement && t.footer) {
+                footerElement.textContent = t.footer;
+            }
         }
 
     document.getElementById('lang-select').addEventListener('change', (e) => {
