@@ -780,7 +780,17 @@
                 </div>
             </div>
         </div>
-    </section> 
+    </section>
+    
+    <section id="playlist" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Playlist</h2>
+            <div style="max-width: 600px; margin: 50px auto 0; text-align: center;">
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1X4xZB85WDCSV4vgKE9DrJ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+    
     <!-- <section id="rsvp" class="section">
         <div class="container">
             <h2 class="section-title">RSVP</h2>
@@ -1229,6 +1239,7 @@
                     { label: "פרטי החתונה", href: "#details" },
                     { label: "אישור הגעה", href: "#rsvp" },
                     { label: "ספר אורחים", href: "#guestbook" },
+                    { label: "הפלייליסט שלנו", href: "#playlist" },
                     { label: "תמונות", href: "#photos-section" },
                     { label: "המסע שלנו", href: "#timer" },
                     { label: "שאלות נפוצות", href: "#faq" }
@@ -1275,7 +1286,8 @@
                 journeyText: "מאז אותו יום מיוחד ב-10 באוקטובר 2019 שבו נפגשו דרכינו, אנחנו כותבים יחד את סיפור האהבה שלנו. כל יום מקרב אותנו לרגע הזה – יום החתונה שלנו!",
                 memoriesTitle: "הזיכרונות שלנו",
                 footer: "באהבה, שחר ובס",
-                labels: ["שנים", "חודשים", "ימים", "סה״כ ימים"]
+                labels: ["שנים", "חודשים", "ימים", "סה״כ ימים"],
+                playlistTitle: "הפלייליסט שלנו"
             },
 
             en: {
@@ -1283,6 +1295,7 @@
                     { label: "Wedding Details", href: "#details" },
                    // { label: "RSVP", href: "#rsvp" },
                     { label: "Guestbook", href: "#guestbook" },
+                    { label: "Our Playlist", href: "#playlist" },
                     { label: "Photos", href: "#photos-section" },
                     { label: "Our Journey", href: "#timer" },
                     { label: "FAQ", href: "#faq" }
@@ -1329,13 +1342,15 @@
                 journeyText: "Since that special day on October 10th, 2019, when our paths first crossed, we've been writing our love story together. Every day has brought us closer to this moment - our wedding day!",
                 memoriesTitle: "",
                 footer: "With love, Shachar & Bes",
-                labels: ["Years", "Months", "Days", "Total Days"]
+                labels: ["Years", "Months", "Days", "Total Days"],
+                playlistTitle: "Our Playlist"
             },
             al: {
                 nav: [
                     { label: "Detajet e Dasmës", href: "#details" },
                     //{ label: "RSVP", href: "#rsvp" },
                     { label: "Libri i Miqve", href: "#guestbook" },
+                    { label: "Plejlista Jonë", href: "#playlist" },
                     { label: "Fotografitë", href: "#photos-section" },
                     { label: "Udhëtimi Ynë", href: "#timer" },
                     { label: "Pyetje", href: "#faq" }
@@ -1382,7 +1397,8 @@
                 journeyText: "Që nga 10 tetori 2019 kur u takuam për herë të parë, kemi shkruar historinë tonë të dashurisë çdo ditë. Tani jemi gati për ditën tonë të dasmës!",
                 memoriesTitle: "Kujtimet Tona",
                 footer: "Me dashuri, Shachar & Bes",
-                labels: ["Vite", "Muaj", "Ditë", "Ditë gjithsej"]
+                labels: ["Vite", "Muaj", "Ditë", "Ditë gjithsej"],
+                playlistTitle: "Plejlista Jonë"
             }
         };
 
@@ -1478,6 +1494,12 @@
                     guestbookForm.querySelector('#guestName').placeholder = t.guestbookForm.placeholder.name;
                     guestbookForm.querySelector('button[type="submit"]').textContent = t.guestbookForm.submit;
                 }
+            }
+
+            // Update playlist title
+            const playlistTitle = document.querySelector('#playlist .section-title');
+            if (playlistTitle && t.playlistTitle) {
+                playlistTitle.textContent = t.playlistTitle;
             }
 
             // Update countdown labels
