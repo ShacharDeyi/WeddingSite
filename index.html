@@ -736,8 +736,8 @@
     <nav class="nav">
         <div class="nav-container">
             <select id="lang-select" style="background: var(--pink); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 600; cursor: pointer;">
-                <option value="al" lang="sq">Shqip</option>
                 <option value="en" lang="en">English</option>
+                <option value="al" lang="sq">Shqip</option>
                 <option value="he" lang="he">עברית</option>
             </select>
             <span id="nav-links-placeholder"></span>
@@ -766,11 +766,13 @@
                 <div style="display: flex; flex-direction: column; gap: 20px;">
                     <div class="detail-card" style="padding: 30px; border-color: var(--pink);">
                         <h3 style="font-size: 1.8rem; margin-bottom: 10px;">🎉 Reception</h3>
-                        <div class="time" style="font-size: 1.5rem; margin-bottom: 0; color: var(--pink);">19:30</div>
+                        <div class="time" style="font-size: 1.5rem; margin-bottom: 10px; color: var(--pink);">19:30</div>
+                        <p class="reception-description" style="font-size: 0.95rem; color: var(--gray); margin: 0;">Time for mingling and appetizers</p>
                     </div>
                     <div class="detail-card" style="padding: 30px; border-color: var(--gold);">
                         <h3 style="font-size: 1.8rem; margin-bottom: 10px;">💍 Ceremony</h3>
-                        <div class="time" style="font-size: 1.5rem; margin-bottom: 0; color: var(--gold);">20:30</div>
+                        <div class="time" style="font-size: 1.5rem; margin-bottom: 10px; color: var(--gold);">20:30</div>
+                        <p class="ceremony-description" style="font-size: 0.95rem; color: var(--gray); margin: 0;">Traditional Jewish ceremony where we'll tie the knot and break the glass</p>
                     </div>
                     <div style="text-align:center; margin-top:32px;">
                         <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Shachar+%26+Bes+Wedding&dates=20260527T163000Z/20260527T210000Z&details=Join+us+for+our+wedding+celebration!&location=Your+Venue+Address+Here&sf=true&output=xml" target="_blank" rel="noopener" class="add-to-calendar-btn" style="display:inline-block;padding:12px 28px;background:var(--pink);color:white;font-size:1.1em;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.08);transition:background 0.2s;" title="Add to Google Calendar" aria-label="Add to Google Calendar">
@@ -900,15 +902,11 @@
             <div class="faq-list">
                 <div class="faq-item">
                     <h3 class="faq-question">What type of food will be served?</h3>
-                    <p class="faq-answer">Appetizers and main course, all kosher and basari. There will be vegan option as well.</p>
+                    <p class="faq-answer">Appetizers and main course (and desserts of course), all kosher and basari. There will be vegan option as well.</p>
                 </div>
                 <div class="faq-item">
                     <h3 class="faq-question">What should I wear?</h3>
-                    <p class="faq-answer">The wedding is mostly indoors, wear whatever you feel like.</p>
-                </div>
-                <div class="faq-item">
-                    <h3 class="faq-question">Are you excited as we?</h3>
-                    <p class="faq-answer">YES</p>
+                    <p class="faq-answer">The wedding will be mostly indoors. Formal attire isn’t necessary, wear something you’ll enjoy celebrating in.</p>
                 </div>
             </div>
         </div>
@@ -1256,13 +1254,11 @@
                 faqTitle: "שאלות נפוצות",
                 faqQuestions: [
                     "איזה אוכל יוגש?",
-                    "מה כדאי ללבוש?",
-                    "האם אתם מתרגשים כמונו?"
+                    "מה כדאי ללבוש?"
                 ],
                 faqAnswers: [
                     "מנות ראשונות ועיקריות, הכל כשר ובשרי. תהיה גם אופציה טבעונית.",
-                    "החתונה מתקיימת בעיקר באולם סגור, תרגישו בנוח לבוא כפי שנעים לכם.",
-                    "כן!!"
+                    "החתונה מתקיימת בעיקר באולם סגור, תרגישו בנוח לבוא כפי שנעים לכם."
                 ],
                 guestbookForm: {
                     message: "המסר שלך:",
@@ -1287,7 +1283,9 @@
                 memoriesTitle: "הזיכרונות שלנו",
                 footer: "באהבה, שחר ובס",
                 labels: ["שנים", "חודשים", "ימים", "סה״כ ימים"],
-                playlistTitle: "הפלייליסט שלנו"
+                playlistTitle: "הפלייליסט שלנו",
+                receptionDescription: "זמן לפטפט ולאכול ראשונות",
+                ceremonyDescription: "זמן להתחתן!"
             },
 
             en: {
@@ -1312,13 +1310,10 @@
                 faqTitle: "FAQ",
                 faqQuestions: [
                     "What type of food will be served?",
-                    "What should I wear?",
-                    "Are you excited as we?"
-                ],
+                    "What should I wear?"                ],
                 faqAnswers: [
-                    "Appetizers and main course, all kosher and basari. There will be vegan option as well.",
-                    "The wedding is mostly indoors, wear whatever you feel like.",
-                    "YES"
+                    "You will find menus on the table. You can order anything without limit. The food is Kosher and vegan options are available.",
+                    "The wedding will be mostly indoors. Formal attire isn't necessary, wear something you'll enjoy celebrating in."
                 ],
                 guestbookForm: {
                     message: "Your Message:",
@@ -1343,14 +1338,16 @@
                 memoriesTitle: "",
                 footer: "With love, Shachar & Bes",
                 labels: ["Years", "Months", "Days", "Total Days"],
-                playlistTitle: "Our Playlist"
+                playlistTitle: "Our Playlist",
+                receptionDescription: "Time for mingling, appetizers and pictures.",
+                ceremonyDescription: "Traditional Jewish ceremony where we'll tie the knot and break the glass."
             },
             al: {
                 nav: [
                     { label: "Detajet e Dasmës", href: "#details" },
                     //{ label: "RSVP", href: "#rsvp" },
                     { label: "Libri i Miqve", href: "#guestbook" },
-                    { label: "Plejlista Jonë", href: "#playlist" },
+                    { label: "Lista e Këngëve", href: "#playlist" },
                     { label: "Fotografitë", href: "#photos-section" },
                     { label: "Udhëtimi Ynë", href: "#timer" },
                     { label: "Pyetje", href: "#faq" }
@@ -1367,13 +1364,11 @@
                 faqTitle: "Pyetje",
                 faqQuestions: [
                     "Çfarë ushqimi do të shërbehet?",
-                    "Çfarë duhet të vesh?",
-                    "A jeni po aq të emocionuar sa ne?"
+                    "Çfarë duhet të vesh?"
                 ],
                 faqAnswers: [
-                    "Meze dhe pjatë kryesore, të gjitha kosher dhe mish. Do të ketë edhe opsion vegan.",
-                    "Dasma është kryesisht brenda, vishuni si të ndiheni rehat.",
-                    "PO!"
+                    "Në tavolinë do ketë menu me llojet e ushqimeve që mund të zgjidhni. Mund të porosisni çdo gjë në listë, pa limit. Ushqimet janë kosher. Ka dhe opsion vegan.",
+                    "Dasma është kryesisht në ambient të mbyllur, vishuni si të ndiheni rehat."
                 ],
                 guestbookForm: {
                     message: "Mesazhi juaj:",
@@ -1398,7 +1393,9 @@
                 memoriesTitle: "Kujtimet Tona",
                 footer: "Me dashuri, Shachar & Bes",
                 labels: ["Vite", "Muaj", "Ditë", "Ditë gjithsej"],
-                playlistTitle: "Plejlista Jonë"
+                playlistTitle: "Lista e Këngëve",
+                receptionDescription: "Kohë për të takuar miq dhe për të krijuar kujtime me foto & video",
+                ceremonyDescription: "Ceremonia tradicionale hebraike e martesës kur zyrtarisht bëhemi familje"
             }
         };
 
@@ -1441,6 +1438,10 @@
             if (detailCards.length >= 2) {
                 detailCards[0].querySelector('h3').textContent = t.reception;
                 detailCards[1].querySelector('h3').textContent = t.ceremony;
+                const receptionDesc = detailCards[0].querySelector('.reception-description');
+                const ceremonyDesc = detailCards[1].querySelector('.ceremony-description');
+                if (receptionDesc && t.receptionDescription) receptionDesc.textContent = t.receptionDescription;
+                if (ceremonyDesc && t.ceremonyDescription) ceremonyDesc.textContent = t.ceremonyDescription;
             }
 
             // Update location card
@@ -1551,7 +1552,7 @@
     // Set initial direction
     document.getElementById('html-root').setAttribute('dir', 'ltr');
     document.body.setAttribute('dir', 'ltr');
-    applyTranslations("al");
+    applyTranslations("en");
 
 </script>
 <script>
