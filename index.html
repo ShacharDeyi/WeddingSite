@@ -763,20 +763,25 @@
                 </div>
 
                 <!-- Right side: Timeline -->
-                <div style="display: flex; flex-direction: column; gap: 20px;">
-                    <div class="detail-card" style="padding: 30px; border-color: var(--pink);">
-                        <h3 style="font-size: 1.8rem; margin-bottom: 10px;">🎉 Reception</h3>
-                        <div class="time" style="font-size: 1.5rem; margin-bottom: 10px; color: var(--pink);">19:30</div>
-                        <p class="reception-description" style="font-size: 0.95rem; color: var(--gray); margin: 0;">Time for mingling and appetizers</p>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div class="detail-card" style="padding: 20px; border-color: var(--pink);">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 8px;">🎉 Reception</h3>
+                        <div class="time" style="font-size: 1.2rem; margin-bottom: 8px; color: var(--pink);">19:30</div>
+                        <p class="reception-description" style="font-size: 0.9rem; color: var(--gray); margin: 0;">Time for mingling and appetizers</p>
                     </div>
-                    <div class="detail-card" style="padding: 30px; border-color: var(--gold);">
-                        <h3 style="font-size: 1.8rem; margin-bottom: 10px;">💍 Ceremony</h3>
-                        <div class="time" style="font-size: 1.5rem; margin-bottom: 10px; color: var(--gold);">20:30</div>
-                        <p class="ceremony-description" style="font-size: 0.95rem; color: var(--gray); margin: 0;">Traditional Jewish ceremony where we'll tie the knot and break the glass</p>
+                    <div class="detail-card" style="padding: 20px; border-color: var(--gold);">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 8px;">💍 Ceremony</h3>
+                        <div class="time" style="font-size: 1.2rem; margin-bottom: 8px; color: var(--gold);">20:30</div>
+                        <p class="ceremony-description" style="font-size: 0.9rem; color: var(--gray); margin: 0;">Traditional Jewish ceremony where we'll tie the knot and break the glass</p>
                     </div>
-                    <div style="text-align:center; margin-top:32px;">
-                        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Shachar+%26+Bes+Wedding&dates=20260527T163000Z/20260527T210000Z&details=Join+us+for+our+wedding+celebration!&location=Your+Venue+Address+Here&sf=true&output=xml" target="_blank" rel="noopener" class="add-to-calendar-btn" style="display:inline-block;padding:12px 28px;background:var(--pink);color:white;font-size:1.1em;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.08);transition:background 0.2s;" title="Add to Google Calendar" aria-label="Add to Google Calendar">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <div class="detail-card" style="padding: 20px; border-color: var(--pink);">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 8px;"> Party</h3>
+                        <div class="time" style="font-size: 1.2rem; margin-bottom: 8px; color: var(--pink);">21:00</div>
+                        <p class="party-description" style="font-size: 0.9rem; color: var(--gray); margin: 0;">Celebration time with your alltime favorite hits</p>
+                    </div>
+                    <div style="text-align:center; margin-top:20px;">
+                        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Shachar+%26+Bes+Wedding&dates=20260527T163000Z/20260527T210000Z&details=Join+us+for+our+wedding+celebration!&location=Your+Venue+Address+Here&sf=true&output=xml" target="_blank" rel="noopener" class="add-to-calendar-btn" style="display:inline-block;padding:10px 20px;background:var(--green);color:white;font-size:0.95em;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.08);transition:background 0.2s;" title="Add to Google Calendar" aria-label="Add to Google Calendar">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                         </a>
                     </div>
                 </div>
@@ -1284,8 +1289,10 @@
                 footer: "באהבה, שחר ובס",
                 labels: ["שנים", "חודשים", "ימים", "סה״כ ימים"],
                 playlistTitle: "הפלייליסט שלנו",
-                receptionDescription: "זמן לפטפט ולאכול ראשונות",
-                ceremonyDescription: "זמן להתחתן!"
+                receptionDescription: "נפטפט, נאכל ראשונות ונצטלם",
+                ceremonyDescription: "מתחתנים",
+                party: "מסיבה",
+                partyDescription: "אוכל וחגיגה!"
             },
 
             en: {
@@ -1340,7 +1347,9 @@
                 labels: ["Years", "Months", "Days", "Total Days"],
                 playlistTitle: "Our Playlist",
                 receptionDescription: "Time for mingling, appetizers and pictures.",
-                ceremonyDescription: "Traditional Jewish ceremony where we'll tie the knot and break the glass."
+                ceremonyDescription: "Traditional Jewish ceremony where we'll tie the knot and break the glass.",
+                party: "Party",
+                partyDescription: "Let's eat and celebrate!"
             },
             al: {
                 nav: [
@@ -1395,7 +1404,9 @@
                 labels: ["Vite", "Muaj", "Ditë", "Ditë gjithsej"],
                 playlistTitle: "Lista e Këngëve",
                 receptionDescription: "Kohë për të takuar miq dhe për të krijuar kujtime me foto & video",
-                ceremonyDescription: "Ceremonia tradicionale hebraike e martesës kur zyrtarisht bëhemi familje"
+                ceremonyDescription: "Ceremonia tradicionale hebraike e martesës kur zyrtarisht bëhemi familje",
+                party: "Festa",
+                partyDescription: "Koha për të kërcyer dhe për të ngrënë."
             }
         };
 
@@ -1435,13 +1446,16 @@
 
             // Update detail cards
             const detailCards = document.querySelectorAll('#details .detail-card');
-            if (detailCards.length >= 2) {
+            if (detailCards.length >= 3) {
                 detailCards[0].querySelector('h3').textContent = t.reception;
                 detailCards[1].querySelector('h3').textContent = t.ceremony;
+                if (detailCards[2]) detailCards[2].querySelector('h3').textContent = t.party;
                 const receptionDesc = detailCards[0].querySelector('.reception-description');
                 const ceremonyDesc = detailCards[1].querySelector('.ceremony-description');
+                const partyDesc = detailCards[2] ? detailCards[2].querySelector('.party-description') : null;
                 if (receptionDesc && t.receptionDescription) receptionDesc.textContent = t.receptionDescription;
                 if (ceremonyDesc && t.ceremonyDescription) ceremonyDesc.textContent = t.ceremonyDescription;
+                if (partyDesc && t.partyDescription) partyDesc.textContent = t.partyDescription;
             }
 
             // Update location card
